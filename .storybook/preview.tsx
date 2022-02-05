@@ -1,14 +1,6 @@
 import * as React from 'react';
-import customTheme from '../src/theme';
-import {
-  ChakraProvider,
-  Flex,
-  Link,
-  Text,
-  Icon,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import theme from '../src/theme';
+import { ChakraProvider, Flex, Link, Text, Icon, useColorMode } from '@chakra-ui/react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 import { StoryContext } from '@storybook/react';
 
@@ -26,7 +18,6 @@ export const globalTypes = {};
 
 const ColorModeToggleBar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const nextMode = useColorModeValue('dark', 'light');
 
   return (
     <Flex justify="flex-end" mb={4}>
@@ -50,7 +41,7 @@ const ColorModeToggleBar = () => {
 
 const withChakra = (StoryFn: Function, context: StoryContext) => {
   return (
-    <ChakraProvider theme={customTheme}>
+    <ChakraProvider theme={theme}>
       <ColorModeToggleBar />
       <StoryFn />
     </ChakraProvider>

@@ -1,11 +1,13 @@
 const path = require('path');
-
 const toPath = (_path) => path.join(process.cwd(), _path);
 
 module.exports = {
+  typescript: { reactDocgen: false },
   stories: [
     '../src/components/**/*.stories.mdx',
     '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/theme/stories/*.stories.mdx',
+    '../src/theme/stories/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-links',
@@ -13,14 +15,9 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-viewport',
   ],
-  typescript: {
-    check: false,
-    checkOptions: {},
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-    },
+  framework: '@storybook/react',
+  core: {
+    builder: 'webpack5',
   },
   webpackFinal: async (config) => {
     return {

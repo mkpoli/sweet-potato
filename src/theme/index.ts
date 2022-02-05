@@ -8,7 +8,7 @@ import components from './components';
 const direction: ThemeDirection = 'ltr';
 
 const config: ColorModeOptions = {
-  useSystemColorMode: true,
+  useSystemColorMode: false,
   initialColorMode: 'light',
 };
 

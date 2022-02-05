@@ -1,6 +1,6 @@
 const radii = {
   none: '0',
-  base: '5px',
+  base: '7px',
   circle: '50%',
 };
 

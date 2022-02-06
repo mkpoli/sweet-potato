@@ -10,7 +10,7 @@ import {
   AspectRatio,
   Image,
 } from '@chakra-ui/react';
-import { BsBookmarkStar, BsBookmarkStarFill } from 'react-icons/bs';
+import { BsBookmarkStar } from 'react-icons/bs';
 import Level from '../Badge/Level';
 
 const Score: React.FC = () => {

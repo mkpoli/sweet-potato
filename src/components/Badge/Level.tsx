@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Level: React.FC<Props> = ({ level }) => {
-  var color: string = '#6bcaf9';
+  let color = '#6bcaf9';
 
   if (level > 30) {
     color = '#9c27b0';

@@ -5,10 +5,10 @@ const typography = {
   },
 
   fonts: {
-    body: 'YakuHanJP,Nunito,-apple-system,YuGothic,Yu Gothic Medium,Yu Gothic,Hiragino Kaku Gothic ProN,"メイリオ",meiryo,sans-serif',
+    body: 'YakuHanJP,"M PLUS 1p",-apple-system,YuGothic,Yu Gothic Medium,Yu Gothic,Hiragino Kaku Gothic ProN,"メイリオ",meiryo,sans-serif',
     heading:
-      'YakuHanJP,Nunito,-apple-system,YuGothic,Yu Gothic Medium,Yu Gothic,Hiragino Kaku Gothic ProN,"メイリオ",meiryo,sans-serif',
-    mono: 'YakuHanJP,Nunito,-apple-system,YuGothic,Yu Gothic Medium,Yu Gothic,Hiragino Kaku Gothic ProN,"メイリオ",meiryo,sans-serif',
+      'YakuHanJP,"M PLUS 1p",-apple-system,YuGothic,Yu Gothic Medium,Yu Gothic,Hiragino Kaku Gothic ProN,"メイリオ",meiryo,sans-serif',
+    mono: 'YakuHanJP,"M PLUS 1p",-apple-system,YuGothic,Yu Gothic Medium,Yu Gothic,Hiragino Kaku Gothic ProN,"メイリオ",meiryo,sans-serif',
   },
 
   fontSizes: {

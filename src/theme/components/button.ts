@@ -2,8 +2,8 @@ import { mode } from '@chakra-ui/theme-tools';
 import { Dict } from '@chakra-ui/utils';
 
 const baseStyle = {
-  px: 5,
-  py: 3,
+  px: 3,
+  py: 2,
 };
 
 const sizes = {

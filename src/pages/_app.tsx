@@ -1,7 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import theme from 'theme';
+import NextNprogress from 'nextjs-progressbar';
 import { ChakraProvider } from '@chakra-ui/react';
+import HeaderNav from 'components/Header/Navigation';
 
 interface Props {
   pageProps: any; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -29,7 +31,14 @@ export default class App extends React.Component<Props> {
             rel="stylesheet"
           />
         </Head>
+        <NextNprogress
+          color="rgba(175, 61, 231, 1)"
+          startPosition={0.3}
+          stopDelayMs={50}
+          height={2}
+        />
         <ChakraProvider theme={theme}>
+          <HeaderNav />
           <Component {...pageProps} />
         </ChakraProvider>
       </>

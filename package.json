@@ -7,7 +7,7 @@
     "start": "next start -p 8080",
     "lint": "eslint src/** --ext .ts,.tsx",
     "lint:fix": "eslint src/** --ext .ts,.tsx --fix && yarn format",
-    "format": "prettier --config .prettierrc.json --write '**/*.tsx'",
+    "format": "prettier --config .prettierrc.json --write '**/*.tsx' --loglevel silent",
     "test": "echo 'pass'",
     "storybook": "rm -rf ./node_modules/.cache && start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -19,6 +19,7 @@
     "@emotion/styled": "^11",
     "framer-motion": "^5",
     "next": "12.0.10",
+    "nextjs-progressbar": "^0.0.13",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1"

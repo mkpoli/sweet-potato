@@ -17,6 +17,7 @@ const colors = {
     dark: 'rgba(241, 241, 241)',
   },
   potato: 'rgba(144, 49, 170)',
+  pink: 'rgba(252, 157, 157)',
 };
 
 export default colors;

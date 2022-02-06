@@ -1,0 +1,35 @@
+name: Storybook preview deploy
+
+on:
+  pull_request:
+    types: [labeled, synchronize]
+
+jobs:
+  Preview-Deploy:
+    if: ${{ contains(toJson(github.event.pull_request.labels), '[Preview] Storybook') && github.event.action != 'closed' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Enable node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build storybook
+        run: yarn build-storybook
+
+      - name: Create firebase.json
+        run: echo '{"hosting":{"public":"storybook-static"}}' > firebase.json
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'
+          expires: 2d
+          channelId: 'pr_${{github.event.pull_request.number}}'

@@ -17,12 +17,14 @@
     "@chakra-ui/react": "^1.8.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "firebase": "^9.6.6",
     "framer-motion": "^5",
     "next": "12.0.10",
     "nextjs-progressbar": "^0.0.13",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "recoil": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",

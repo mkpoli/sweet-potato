@@ -3,6 +3,7 @@ import Head from 'next/head';
 import theme from 'theme';
 import NextNprogress from 'nextjs-progressbar';
 import { ChakraProvider } from '@chakra-ui/react';
+import { RecoilRoot } from 'recoil';
 import HeaderNav from 'components/Header/Navigation';
 
 interface Props {
@@ -37,10 +38,12 @@ export default class App extends React.Component<Props> {
           stopDelayMs={50}
           height={2}
         />
-        <ChakraProvider theme={theme}>
-          <HeaderNav />
-          <Component {...pageProps} />
-        </ChakraProvider>
+        <RecoilRoot>
+          <ChakraProvider theme={theme}>
+            <HeaderNav />
+            <Component {...pageProps} />
+          </ChakraProvider>
+        </RecoilRoot>
       </>
     );
   }

@@ -1,10 +1,14 @@
 import React from 'react';
 import { Container, Flex, Box, Heading, useColorModeValue, Spacer, Button } from '@chakra-ui/react';
-import { FiLogIn, FiUploadCloud } from 'react-icons/fi';
+import { FiUploadCloud } from 'react-icons/fi';
+import { useAuth } from 'hooks/auth';
 
-import Logo from './Logo';
+import Logo from 'components/Header/Logo';
+import Login from 'components/Buttons/Login';
 
 const HeaderNav: React.FC = () => {
+  const { status } = useAuth();
+
   return (
     <Container>
       <Flex
@@ -26,12 +30,13 @@ const HeaderNav: React.FC = () => {
         </Flex>
         <Spacer />
         <Box>
-          <Button leftIcon={<FiUploadCloud />} bgColor="potato" color="white">
-            投稿
-          </Button>
-          <Button leftIcon={<FiLogIn />} bgColor="potato" color="white">
-            ログイン
-          </Button>
+          {status.isAuthed ? (
+            <Button leftIcon={<FiUploadCloud />} bgColor="potato" color="white">
+              投稿
+            </Button>
+          ) : (
+            <Login />
+          )}
         </Box>
       </Flex>
     </Container>

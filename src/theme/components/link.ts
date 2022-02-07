@@ -16,6 +16,21 @@ function defaultVariant(props: Dict): Dict {
     borderRadius: 'base',
     color: mode('text.light', 'text.dark')(props),
     _hover: {
+      bgColor: 'transparent',
+    },
+    _focus: {
+      border: 'none',
+      boxShadow: 'none',
+      bgColor: 'transparent',
+    },
+  };
+}
+
+function cardVariant(props: Dict): Dict {
+  return {
+    borderRadius: 'base',
+    color: mode('text.light', 'text.dark')(props),
+    _hover: {
       transform: 'scale(1.05,1.05)',
       bgColor: 'transparent',
     },
@@ -31,6 +46,7 @@ function defaultVariant(props: Dict): Dict {
 
 const variants = {
   default: defaultVariant,
+  card: cardVariant,
 };
 
 const defaultProps = {

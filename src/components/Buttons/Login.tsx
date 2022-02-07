@@ -10,21 +10,25 @@ import { useAuth } from 'hooks/auth';
 const provider = new GoogleAuthProvider();
 
 const Login: React.FC = () => {
-  const { setStatus } = useAuth();
+  const { setStatus, setProfile } = useAuth();
 
   const popupLogin = (): void => {
     const auth = getAuth(firebase);
-    signInWithPopup(auth, provider).then(async (credential) => {
-      console.log(credential.user.uid);
+    signInWithPopup(auth, provider).then(async (res) => {
       setStatus({
         isLoaded: true,
         isAuthed: true,
+      });
+
+      setProfile({
+        userName: res.user.displayName,
+        profileImage: res.user.photoURL,
       });
     });
   };
 
   return (
-    <Button leftIcon={<FiLogIn />} bgColor="potato" color="white" onClick={popupLogin}>
+    <Button leftIcon={<FiLogIn />} bgColor="potato" color="white" onClick={popupLogin} width="full">
       {useLocaleValue({ ja: 'ログイン', en: 'Login' })}
     </Button>
   );

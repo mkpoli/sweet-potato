@@ -15,7 +15,7 @@ import Link from 'components/Link';
 
 const Score: React.FC = () => {
   return (
-    <Link href="/">
+    <Link href="/" variant="card">
       <Box
         p={4}
         borderRadius="base"

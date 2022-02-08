@@ -21,6 +21,7 @@ import {
   Button,
   SimpleGrid,
   Icon,
+  Spinner,
 } from '@chakra-ui/react';
 import { FiMenu, FiUploadCloud, FiUser } from 'react-icons/fi';
 import { MdLanguage } from 'react-icons/md';
@@ -64,31 +65,39 @@ const DrawerMenu: React.FC = () => {
 
             <DrawerBody>
               <Box>
-                {status.isAuthed ? (
-                  <>
-                    <Box mb={8}>
-                      <UserIcon />
-                    </Box>
-                    <SimpleGrid spacing={2}>
-                      <Link href="/mypage">
-                        <Button
-                          leftIcon={<FiUploadCloud />}
-                          bgColor="potato"
-                          color="white"
-                          width="full"
-                        >
-                          {t.HEADER.UPLOAD}
-                        </Button>
-                      </Link>
-                      <Link href="/mypage">
-                        <Button leftIcon={<FiUser />} border="1px" width="full">
-                          {t.HEADER.MYPAGE}
-                        </Button>
-                      </Link>
-                    </SimpleGrid>
-                  </>
+                {!status.isLoaded ? (
+                  <Flex justify="center" width="100%">
+                    <Spinner size="sm" color="potato" />
+                  </Flex>
                 ) : (
-                  <Login />
+                  <>
+                    {status.isAuthed ? (
+                      <>
+                        <Box mb={8}>
+                          <UserIcon />
+                        </Box>
+                        <SimpleGrid spacing={2}>
+                          <Link href="/mypage">
+                            <Button
+                              leftIcon={<FiUploadCloud />}
+                              bgColor="potato"
+                              color="white"
+                              width="full"
+                            >
+                              {t.HEADER.UPLOAD}
+                            </Button>
+                          </Link>
+                          <Link href="/mypage">
+                            <Button leftIcon={<FiUser />} border="1px" width="full">
+                              {t.HEADER.MYPAGE}
+                            </Button>
+                          </Link>
+                        </SimpleGrid>
+                      </>
+                    ) : (
+                      <Login />
+                    )}
+                  </>
                 )}
               </Box>
               <Box>

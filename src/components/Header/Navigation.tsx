@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Flex, Box, useColorModeValue, Spacer, Button } from '@chakra-ui/react';
+import { Container, Flex, Box, useColorModeValue, Spacer, Button, Spinner } from '@chakra-ui/react';
 import { useAuth } from 'hooks/auth';
 import { FiUser } from 'react-icons/fi';
 import { useLocale } from 'hooks/locales';
@@ -26,19 +26,27 @@ const HeaderNav: React.FC = () => {
           <Logo />
         </Link>
         <Spacer />
-        <Box>
-          {status.isAuthed ? (
-            <Link href="/mypage">
-              <Button leftIcon={<FiUser />} border="1px" width="full">
-                {t.HEADER.MYPAGE}
-              </Button>
-            </Link>
+        <Flex align="center">
+          {!status.isLoaded ? (
+            <Flex align="center" width="80px">
+              <Spinner size="sm" color="potato" />
+            </Flex>
           ) : (
-            <Box mx={4}>
-              <Login />
-            </Box>
+            <>
+              {status.isAuthed ? (
+                <Link href="/mypage">
+                  <Button leftIcon={<FiUser />} border="1px" width="full">
+                    {t.HEADER.MYPAGE}
+                  </Button>
+                </Link>
+              ) : (
+                <Box mx={4}>
+                  <Login />
+                </Box>
+              )}
+            </>
           )}
-        </Box>
+        </Flex>
         <Box>
           <DrawerMenu />
         </Box>

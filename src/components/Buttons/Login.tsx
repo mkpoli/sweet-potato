@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@chakra-ui/react';
 import { FiLogIn } from 'react-icons/fi';
 
-import firebase from 'framework/firebase/init';
+import firebase from 'framework/firebase/sdk';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useLocaleValue } from 'hooks/locales';
 import { useAuth } from 'hooks/auth';
@@ -10,19 +10,27 @@ import { useAuth } from 'hooks/auth';
 const provider = new GoogleAuthProvider();
 
 const Login: React.FC = () => {
-  const { setStatus, setProfile } = useAuth();
+  const { setStatus } = useAuth();
 
   const popupLogin = (): void => {
     const auth = getAuth(firebase);
-    signInWithPopup(auth, provider).then(async (res) => {
-      setStatus({
-        isLoaded: true,
-        isAuthed: true,
-      });
+    signInWithPopup(auth, provider).then(async () => {
+      const idToken = await auth!.currentUser!.getIdToken();
 
-      setProfile({
-        userName: res.user.displayName,
-        profileImage: res.user.photoURL,
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: idToken,
+        }),
+      }).then((res) => {
+        if (res.status !== 200) return;
+        setStatus({
+          isLoaded: false,
+          isAuthed: true,
+        });
       });
     });
   };

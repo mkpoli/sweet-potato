@@ -7,6 +7,7 @@ export type status = {
 };
 
 export type profile = {
+  uid: string | undefined;
   userName: string | undefined;
   profileImage: string | undefined;
 };
@@ -22,6 +23,7 @@ export const statusState = atom<status>({
 export const profileState = atom<profile>({
   key: 'profileState',
   default: {
+    uid: undefined,
     userName: undefined,
     profileImage: undefined,
   },
@@ -36,9 +38,35 @@ export const useAuth = (): any => {
     if (status.isLoaded) {
       return;
     }
-    // プロフィール読み込み
+
+    fetch('/api/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(async (res) => {
+      const json = (await res.json()) as { code?: number; user?: profile };
+      console.log(json);
+
+      if (json.code !== 200) {
+        setStatus({
+          isLoaded: true,
+          isAuthed: false,
+        });
+        return;
+      }
+
+      setStatus({
+        isLoaded: true,
+        isAuthed: true,
+      });
+
+      const user = json.user;
+      setProfile({ uid: user?.uid, userName: user?.userName, profileImage: user?.profileImage });
+    });
+
     return;
-  }, [status.isLoaded]);
+  }, [status.isAuthed]);
 
   return { status, profile, setStatus, setProfile };
 };

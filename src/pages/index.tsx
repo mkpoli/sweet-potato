@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocale } from 'hooks/locales';
 import { Container, SimpleGrid, Heading } from '@chakra-ui/react';
 import Score from 'components/Card/Score';
+import { client } from 'framework/potato/client';
 
 const Home: React.FC = () => {
   const { t } = useLocale();
+
+  useEffect(() => {
+    const fetchScores = async () => {
+      const res = await client.levels.list.$get();
+      console.log(res);
+    };
+    fetchScores();
+  });
+
   return (
     <>
       <Container>

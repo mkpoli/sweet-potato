@@ -7,6 +7,12 @@ const nextConfig = {
     locales: ['en', 'ja'],
     defaultLocale: 'ja',
   },
+  env: {
+    API_URL:
+      process.env.NODE_ENV === 'production'
+        ? ''
+        : 'https://stoplight.io/mocks/sonolus-core/servers/36101371/',
+  },
 };
 
 module.exports = nextConfig;

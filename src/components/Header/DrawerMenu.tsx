@@ -19,19 +19,22 @@ import {
   MenuOptionGroup,
   MenuItemOption,
   Button,
+  SimpleGrid,
   Icon,
 } from '@chakra-ui/react';
-import { FiMenu, FiUploadCloud } from 'react-icons/fi';
+import { FiMenu, FiUploadCloud, FiUser } from 'react-icons/fi';
 import { MdLanguage } from 'react-icons/md';
 import { useAuth } from 'hooks/auth';
 import Logo from 'components/Header/Logo';
+import UserIcon from 'components/Header/UserIcon';
 import Login from 'components/Buttons/Login';
+import Link from 'components/Link';
 import { useLocale } from 'hooks/locales';
 
 const DrawerMenu: React.FC = () => {
   const { status } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { locale } = useLocale();
+  const { t, locale } = useLocale();
   const router = useRouter();
 
   return (
@@ -62,9 +65,28 @@ const DrawerMenu: React.FC = () => {
             <DrawerBody>
               <Box>
                 {status.isAuthed ? (
-                  <Button leftIcon={<FiUploadCloud />} bgColor="potato" color="white" width="full">
-                    投稿
-                  </Button>
+                  <>
+                    <Box mb={8}>
+                      <UserIcon />
+                    </Box>
+                    <SimpleGrid spacing={2}>
+                      <Link href="/mypage">
+                        <Button
+                          leftIcon={<FiUploadCloud />}
+                          bgColor="potato"
+                          color="white"
+                          width="full"
+                        >
+                          {t.HEADER.UPLOAD}
+                        </Button>
+                      </Link>
+                      <Link href="/mypage">
+                        <Button leftIcon={<FiUser />} border="1px" width="full">
+                          {t.HEADER.MYPAGE}
+                        </Button>
+                      </Link>
+                    </SimpleGrid>
+                  </>
                 ) : (
                   <Login />
                 )}

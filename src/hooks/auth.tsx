@@ -46,7 +46,6 @@ export const useAuth = (): any => {
       },
     }).then(async (res) => {
       const json = (await res.json()) as { code?: number; user?: profile };
-      console.log(json);
 
       if (json.code !== 200) {
         setStatus({

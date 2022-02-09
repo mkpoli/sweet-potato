@@ -2,25 +2,25 @@ import React from 'react';
 import { Badge } from '@chakra-ui/react';
 
 type Props = {
-  level: number;
+  rate: number;
 };
 
-const Level: React.FC<Props> = ({ level }) => {
+const Rating: React.FC<Props> = ({ rate }) => {
   let color = '#6bcaf9';
 
-  if (level > 30) {
+  if (rate > 30) {
     color = '#9c27b0';
-  } else if (level > 25) {
+  } else if (rate > 25) {
     color = '#f44336';
-  } else if (level > 15) {
+  } else if (rate > 15) {
     color = '#f8e03b';
   }
 
   return (
     <Badge px={2} bgColor={color} color="white" borderRadius="base" textAlign="center">
-      Lv. {level}
+      Lv. {rate}
     </Badge>
   );
 };
 
-export default Level;
+export default Rating;

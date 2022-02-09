@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
+    "dev:legacy": "MODE=legacy next dev --hostname 0.0.0.0",
     "build": "rm -rf ./build && NODE_ENV=production next build",
     "start": "next start -p 8080",
     "lint": "eslint src/** --ext .ts,.tsx",

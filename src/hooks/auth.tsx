@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { atom, useRecoilState } from 'recoil';
+import firebase from 'framework/firebase/sdk';
+import { getAuth } from 'firebase/auth';
 
 export type status = {
   isLoaded: boolean;
@@ -34,6 +36,10 @@ export const useAuth = (): any => {
   const [status, setStatus] = useRecoilState<status>(statusState);
   const [profile, setProfile] = useRecoilState<profile>(profileState);
 
+  // バックエンドができるまでの仮実装
+  const auth = getAuth(firebase);
+  const user = auth.currentUser;
+
   useEffect(() => {
     if (status.isLoaded) {
       return;
@@ -67,5 +73,5 @@ export const useAuth = (): any => {
     return;
   }, [status.isAuthed]);
 
-  return { status, profile, setStatus, setProfile };
+  return { user, status, profile, setStatus, setProfile };
 };

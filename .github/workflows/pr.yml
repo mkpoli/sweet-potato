@@ -27,6 +27,9 @@ jobs:
       - name: Lint types and code
         run: yarn lint
 
+      - name: Set up firebase config
+        run: echo '${{ secrets.FIREBASE_CONFIG }}' > .env
+
       - name: Build packages
         run: yarn build
 

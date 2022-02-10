@@ -21,9 +21,9 @@ import {
   Flex,
   Spacer,
 } from '@chakra-ui/react';
-import { FiEdit, FiTrash2, FiCopy } from 'react-icons/fi';
+import { FiGlobe, FiKey, FiEdit, FiTrash2, FiCopy } from 'react-icons/fi';
 import { useAuth } from 'hooks/auth';
-import { client } from 'framework/potato/client';
+import { client, clientLegacy } from 'framework/potato/client';
 import { Level } from 'models/Level';
 
 const MyPage: React.FC = () => {
@@ -34,6 +34,35 @@ const MyPage: React.FC = () => {
   const { user, status, profile } = useAuth();
   const { onCopy } = useClipboard(`${testURL}`);
 
+  async function makePublic(id: string, isPublic: boolean) {
+    const token = await user?.getIdToken();
+    const l = await clientLegacy.levels
+      ._levelName(id)
+      .$get({ config: { headers: { Authorization: `Bearer ${token}` } } });
+
+    // APIクソ仕様
+    const item = l.item;
+    await clientLegacy.levels._levelName(id).$patch({
+      body: {
+        name: item.name,
+        version: 1,
+        rating: item.rating,
+        engine: 'pjsekai',
+        title: { ja: `${item.title}` },
+        artists: { ja: `${item.artists}` },
+        author: { ja: `${item.author}` },
+        cover: item.cover,
+        bgm: item.bgm,
+        data: item.data,
+        description: { ja: `${item.description}` },
+        genre: item.genre,
+        public: isPublic,
+        userId: item.userId,
+      },
+      config: { headers: { Authorization: `Bearer ${token}` } },
+    });
+  }
+
   useEffect(() => {
     if (!status.isAuthed) router.push('/');
     if (levels.length !== 0) return;
@@ -41,7 +70,6 @@ const MyPage: React.FC = () => {
     // バックエンドができるまでの仮実装
     async function callAPI() {
       const token = await user?.getIdToken();
-      console.log(token);
 
       const me = await client.users
         ._userId(profile.uid)
@@ -147,6 +175,26 @@ const MyPage: React.FC = () => {
                     </Td>
                     <Td>
                       <SimpleGrid spacing={4}>
+                        <Button
+                          leftIcon={<FiGlobe />}
+                          color="white"
+                          bgColor="potato"
+                          onClick={async () => {
+                            makePublic(level.name, true);
+                          }}
+                        >
+                          {t.MY_PAGE.PUBLIC}
+                        </Button>
+                        <Button
+                          leftIcon={<FiKey />}
+                          color="white"
+                          bgColor="potato"
+                          onClick={async () => {
+                            makePublic(level.name, false);
+                          }}
+                        >
+                          {t.MY_PAGE.PRIVATE}
+                        </Button>
                         <Button
                           leftIcon={<FiEdit />}
                           color="white"

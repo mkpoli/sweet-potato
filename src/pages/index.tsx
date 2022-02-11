@@ -4,6 +4,7 @@ import { Container, SimpleGrid, Flex, Skeleton, Text, Heading, Button } from '@c
 import Score from 'components/Card/Score';
 import { client } from 'framework/potato/client';
 import { Level } from 'models/Level';
+import SEO from 'components/SEO';
 
 const Home: React.FC = () => {
   const { t } = useLocale();
@@ -30,6 +31,7 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <SEO path="/" title={t.TOP_PAGE.PAGE_TITLE} description="" thumbnail="" allowIndex={true} />
       <Container>
         <Heading mt={[4, 4, 4, 4, 6]} mb={[6, 6, 6, 6, 8]} fontSize="1.4em" textAlign="center">
           {t.TOP_PAGE.NEW_SCORE_LIST}

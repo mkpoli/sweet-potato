@@ -4,11 +4,13 @@ export default {
     UPLOAD: '投稿',
   },
   TOP_PAGE: {
+    PAGE_TITLE: '新しい譜面',
     LOAD_MORE: 'もっと読み込む',
     NEW_SCORE_LIST: '新しい譜面',
     NO_MORE_SCORE: '全ての譜面を読み込みました。',
   },
   MY_PAGE: {
+    PAGE_TITLE: 'マイページ',
     YOUR_TEST_SERVER: 'あなたのテスト用URL',
     PROFILE: 'プロフィール',
     ARTWORK: 'アートワーク',

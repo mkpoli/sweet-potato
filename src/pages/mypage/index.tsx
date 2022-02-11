@@ -25,6 +25,7 @@ import { FiGlobe, FiKey, FiEdit, FiTrash2, FiCopy } from 'react-icons/fi';
 import { useAuth } from 'hooks/auth';
 import { client, clientLegacy } from 'framework/potato/client';
 import { Level } from 'models/Level';
+import SEO from 'components/SEO';
 
 const MyPage: React.FC = () => {
   const [testURL, setTestURL] = useState<string>();
@@ -86,6 +87,13 @@ const MyPage: React.FC = () => {
 
   return (
     <>
+      <SEO
+        path="/mypage"
+        title={t.MY_PAGE.PAGE_TITLE}
+        description=""
+        thumbnail=""
+        allowIndex={false}
+      />
       <Container>
         <Heading mt={[4, 4, 4, 4, 6]} mb={[6, 6, 6, 6, 8]} fontSize="1.4em" textAlign="center">
           {t.HEADER.MYPAGE}

@@ -8,10 +8,11 @@ const nextConfig = {
     defaultLocale: 'ja',
   },
   env: {
+    FRONT_URL: 'https://potato.purplepalette.net',
     API_URL:
       process.env.NODE_ENV === 'production' || process.env.MODE === 'legacy'
         ? 'https://servers-legacy.purplepalette.net'
-        : 'https://stoplight.io/mocks/sonolus-core/servers/36101371/',
+        : 'https://stoplight.io/mocks/sonolus-core/servers/36101371',
   },
 };
 

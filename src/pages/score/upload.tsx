@@ -20,6 +20,7 @@ import { SonolusResourceLocator } from 'models/SRL';
 import InputForm from 'components/Forms/Input';
 import GenreSelect from 'components/Forms/GenreSelect';
 import RateSlider from 'components/Forms/RateSlider';
+import SEO from 'components/SEO';
 
 type fileName = {
   original: string;
@@ -150,6 +151,13 @@ const Upload: React.FC = () => {
 
   return (
     <>
+      <SEO
+        path="/score/upload"
+        title={t.UPLOAD_PAGE.PAGE_TITLE}
+        description=""
+        thumbnail=""
+        allowIndex={false}
+      />
       <Container>
         <Heading mt={[4, 4, 4, 4, 6]} mb={[6, 6, 6, 6, 8]} fontSize="1.4em" textAlign="center">
           {t.UPLOAD_PAGE.PAGE_TITLE}

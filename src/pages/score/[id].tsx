@@ -13,10 +13,18 @@ import {
 } from '@chakra-ui/react';
 import { client } from 'framework/potato/client';
 import { Level } from 'models/Level';
+import SEO from 'components/SEO';
 
-const ScoreDetail: React.FC<Level> = ({ title, cover, description, author }) => {
+const ScoreDetail: React.FC<Level> = ({ name, title, cover, description, author }) => {
   return (
     <>
+      <SEO
+        path={`/score/${name}`}
+        title={title}
+        description={description}
+        thumbnail={`${process.env.FRONT_URL}/api/ogp/score?title=${title}&author=${author}`}
+        allowIndex={true}
+      />
       <Container>
         <Stack my={4} direction={['column', 'column', 'row']} spacing={[2, 2, 8]}>
           <Box w={['100%', '100%', '240px']}>

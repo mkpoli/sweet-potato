@@ -8,7 +8,7 @@ const nextConfig = {
     defaultLocale: 'ja',
   },
   env: {
-    FRONT_URL: 'https://potato.purplepalette.net',
+    FRONT_URL: 'https://potato-next.purplepalette.net',
     API_URL:
       process.env.NODE_ENV === 'production' || process.env.MODE === 'legacy'
         ? 'https://servers-legacy.purplepalette.net'

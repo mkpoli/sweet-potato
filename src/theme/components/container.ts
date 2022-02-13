@@ -1,7 +1,7 @@
 const baseStyle = {
   w: '100%',
   maxW: '1024px',
-  px: [4, 5],
+  px: [2, 4, 5],
 };
 
 const variants = {

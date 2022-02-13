@@ -1,5 +1,14 @@
 import React from 'react';
-import { Container, Flex, Box, useColorModeValue, Spacer, Button, Spinner } from '@chakra-ui/react';
+import {
+  useBreakpointValue,
+  Container,
+  Flex,
+  Box,
+  useColorModeValue,
+  Spacer,
+  Button,
+  Spinner,
+} from '@chakra-ui/react';
 import { useAuth } from 'hooks/auth';
 import { FiUser } from 'react-icons/fi';
 import { useLocale } from 'hooks/locales';
@@ -26,21 +35,23 @@ const HeaderNav: React.FC = () => {
           <Logo />
         </Link>
         <Spacer />
-        <Flex align="center">
+        <Flex align="center" style={useBreakpointValue({ base: { display: 'none' }, md: {} })}>
           {!status.isLoaded ? (
-            <Flex align="center" width="80px">
+            <Flex align="center" fontSize="1em" w="5em">
               <Spinner size="sm" color="potato" />
             </Flex>
           ) : (
             <>
               {status.isAuthed ? (
-                <Link href="/mypage">
-                  <Button leftIcon={<FiUser />} border="1px" width="full">
-                    {t.HEADER.MYPAGE}
-                  </Button>
-                </Link>
+                <Box mx={[0, 2, 4]} fontSize="1em" w="8em">
+                  <Link href="/mypage">
+                    <Button leftIcon={<FiUser />} border="1px" width="full">
+                      {t.HEADER.MYPAGE}
+                    </Button>
+                  </Link>
+                </Box>
               ) : (
-                <Box mx={4}>
+                <Box mx={[0, 2, 4]} fontSize="1em" w="7em">
                   <Login />
                 </Box>
               )}

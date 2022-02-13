@@ -17,5 +17,5 @@
     "baseUrl": "./src"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "**/*.stories.tsx"]
+  "exclude": ["node_modules", "**/Colors.stories.tsx"]
 }

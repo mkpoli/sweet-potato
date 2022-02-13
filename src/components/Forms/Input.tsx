@@ -31,9 +31,13 @@ const InputForm: React.FC<Props> = ({ id, name, required, maxLength }) => {
           variant="line"
           isRequired={true}
         />
-        <InputRightElement>
-          <Text fontSize="0.8em">/{maxLength}</Text>
-        </InputRightElement>
+        {maxLength !== undefined ? (
+          <InputRightElement>
+            <Text fontSize="0.8em">/{maxLength}</Text>
+          </InputRightElement>
+        ) : (
+          <></>
+        )}
       </InputGroup>
     </Box>
   );

@@ -4,7 +4,7 @@ import { Stack } from '@chakra-ui/react';
 
 export default { title: 'Badge/Level' };
 
-export const defaultStyle = (): JSX.Element => (
+export const normal = (): JSX.Element => (
   <Stack direction="row">
     <Rating rate={10} />
     <Rating rate={20} />

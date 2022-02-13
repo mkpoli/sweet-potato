@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from './Logo';
+import Logo from 'components/Header/Logo';
 
 export default { title: 'Header/Logo' };
 
-export const defaultStyle = (): JSX.Element => <Logo />;
+export const normal = (): JSX.Element => <Logo />;

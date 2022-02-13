@@ -27,7 +27,7 @@ module.exports = {
     delete config.resolve.alias['emotion-theming'];
     delete config.resolve.alias['@emotion/styled'];
     delete config.resolve.alias['@emotion/core'];
-    config.resolve.modules = [...(config.resolve.modules || []), path.resolve(__dirname, '../src')];
+    config.resolve.modules = [...(config.resolve.modules || []), path.resolve('./')];
     config.resolve.plugins = [...(config.resolve.plugins || []), new TsconfigPathsPlugin()];
     return config;
   },

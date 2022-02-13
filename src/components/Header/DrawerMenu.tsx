@@ -42,6 +42,7 @@ const DrawerMenu: React.FC = () => {
     <>
       <Box ml={3} boxSize="40px">
         <Button
+          id="drawer"
           p={0}
           borderRadius="circle"
           onClick={onOpen}

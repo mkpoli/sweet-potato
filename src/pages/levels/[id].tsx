@@ -19,7 +19,7 @@ const ScoreDetail: React.FC<Level> = ({ name, title, cover, description, author 
   return (
     <>
       <SEO
-        path={`/score/${name}`}
+        path={`/levels/${name}`}
         title={title}
         description={description}
         thumbnail={`${process.env.FRONT_URL}/api/ogp/score?title=${title}&author=${author}`}

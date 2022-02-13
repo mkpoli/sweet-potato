@@ -78,7 +78,7 @@ const DrawerMenu: React.FC = () => {
                           <UserIcon />
                         </Box>
                         <SimpleGrid spacing={2}>
-                          <Link href="/score/upload">
+                          <Link href="/levels/upload">
                             <Button
                               leftIcon={<FiUploadCloud />}
                               bgColor="potato"

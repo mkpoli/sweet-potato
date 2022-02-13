@@ -152,7 +152,7 @@ const Upload: React.FC = () => {
   return (
     <>
       <SEO
-        path="/score/upload"
+        path="/levels/upload"
         title={t.UPLOAD_PAGE.PAGE_TITLE}
         description=""
         thumbnail=""

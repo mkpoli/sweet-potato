@@ -15,7 +15,7 @@ import { Level } from 'models/Level';
 
 const Score: React.FC<Level> = ({ name, title, rating, author, cover }) => {
   return (
-    <Link href={`/score/${name}`} variant="card">
+    <Link href={`/levels/${name}`} variant="card">
       <Box
         p={4}
         borderRadius="base"

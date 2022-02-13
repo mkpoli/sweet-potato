@@ -1,0 +1,16 @@
+# itself
+.gcloudignore
+
+# git
+.git
+.gitignore
+
+# Node.js dependencies
+node_modules/
+
+# dev
+.vscode/
+.storybook/
+.husky/
+.github/
+README.md

@@ -10,7 +10,7 @@
     "lint:fix": "eslint src/** --ext .ts,.tsx --fix --no-error-on-unmatched-pattern && yarn format",
     "format": "prettier --config .prettierrc.json --write '**/*.tsx' --loglevel silent",
     "test": "echo 'pass'",
-    "storybook": "rm -rf ./node_modules/.cache && start-storybook -p 6006",
+    "storybook": "rm -rf ./node_modules/.cache && start-storybook -p 6006 --no-open --quiet",
     "build-storybook": "build-storybook",
     "prepare": "husky install"
   },
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",
+    "@gogaille/storybook-addon-next-router": "^4.0.0",
     "@storybook/addon-a11y": "^6.4.18",
     "@storybook/addon-actions": "^6.4.18",
     "@storybook/addon-essentials": "^6.4.18",
@@ -53,6 +54,7 @@
     "eslint-plugin-storybook": "^0.5.6",
     "husky": "^7.0.0",
     "prettier": "^2.5.1",
+    "storybook-addon-turbo-build": "^1.0.1",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "4.5.5"
   }

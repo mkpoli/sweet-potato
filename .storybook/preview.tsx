@@ -2,8 +2,8 @@ import * as React from 'react';
 import theme from '../src/theme';
 import { ChakraProvider, Flex, Link, Text, Icon, useColorMode } from '@chakra-ui/react';
 import { FiMoon, FiSun } from 'react-icons/fi';
-import { StoryContext } from '@storybook/react';
-
+import { RecoilRoot } from 'recoil';
+import { withNextRouter } from '@gogaille/storybook-addon-next-router';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 export const parameters = {
@@ -39,7 +39,7 @@ const ColorModeToggleBar = () => {
   );
 };
 
-const withChakra = (StoryFn: Function, context: StoryContext) => {
+const withChakra = (StoryFn: Function) => {
   return (
     <ChakraProvider theme={theme}>
       <ColorModeToggleBar />
@@ -48,4 +48,8 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   );
 };
 
-export const decorators = [withChakra];
+const withRecoil = (StoryFn: Function) => {
+  return React.createElement(RecoilRoot, {}, StoryFn());
+};
+
+export const decorators = [withNextRouter, withRecoil, withChakra];

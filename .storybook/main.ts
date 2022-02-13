@@ -16,6 +16,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-a11y',
     '@storybook/addon-viewport',
+    'storybook-addon-turbo-build',
   ],
   framework: '@storybook/react',
   core: {
@@ -26,7 +27,6 @@ module.exports = {
     delete config.resolve.alias['@emotion/styled'];
     delete config.resolve.alias['@emotion/core'];
     config.resolve.modules = [...(config.resolve.modules || []), path.resolve(__dirname, '../src')];
-
     config.resolve.plugins = [...(config.resolve.plugins || []), new TsconfigPathsPlugin()];
     return config;
   },

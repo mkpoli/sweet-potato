@@ -6,7 +6,7 @@ import NextNprogress from 'nextjs-progressbar';
 import { ChakraProvider } from '@chakra-ui/react';
 import { RecoilRoot } from 'recoil';
 import HeaderNav from 'components/Header/Navigation';
-import usePageView from 'hooks/usePageView';
+import usePageView from 'hooks/pageview';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const App = ({ Component, pageProps }: AppProps) => {

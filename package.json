@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
-    "dev:legacy": "MODE=legacy next dev --hostname 0.0.0.0",
+    "dev:real": "MODE=real next dev --hostname 0.0.0.0",
     "build": "rm -rf ./build && NODE_ENV=production next build",
     "start": "next start -p 8080",
     "lint": "eslint src/** --ext .ts,.tsx --no-error-on-unmatched-pattern",
@@ -13,7 +13,8 @@
     "storybook": "rm -rf ./node_modules/.cache && start-storybook -p 6006 --no-open --quiet",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "screenshot": "rm -rf ./__screenshots__ && storycap http://localhost:5555 --serverCmd 'start-storybook -p 5555 --ci'"
+    "screenshot": "rm -rf ./__screenshots__ && storycap http://localhost:5555 --serverCmd 'start-storybook -p 5555 --ci'",
+    "potato:gen:legacy": "rm -rf ./src/framework/potato/legacy && npx openapi2aspida -i=./src/framework/potato/yaml/legacy.yaml -o=./src/framework/potato/legacy"
   },
   "dependencies": {
     "@aspida/fetch": "^1.7.1",

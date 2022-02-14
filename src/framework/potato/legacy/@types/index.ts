@@ -1,4 +1,6 @@
 /* eslint-disable */
+import type { ReadStream } from 'fs'
+
 export type Localization = {
   /** It localizes response items if possible */
   localization?: string
@@ -17,6 +19,18 @@ export type Keywords = {
 export type Version = {
   /** Sonolus client version */
   'sonolus-version': string
+}
+
+/** Struct of post upload response */
+export type PostUploadResponse = {
+  /** Response status in human readable */
+  message: string
+  /** Created filename */
+  filename?: string
+}
+
+export type Upload = {
+  file: File | ReadStream
 }
 
 /**
@@ -383,11 +397,4 @@ export type LocalizationText = {
   id?: string
   /** Spanish */
   es?: string
-}
-
-/** Structure of post upload response */
-export type PostUploadResponse = {
-  /** Response status in human readable */
-  message: string
-  filename?: string
 }

@@ -15,8 +15,7 @@ import {
 } from '@chakra-ui/react';
 import FileInputComponent from 'react-file-input-previews-base64';
 import { useAuth } from 'hooks/auth';
-import { client, clientLegacy } from 'framework/potato/client';
-import { SonolusResourceLocator } from 'models/SRL';
+import { clientLegacy } from 'framework/potato/client';
 import InputForm from 'components/Forms/Input';
 import GenreSelect from 'components/Forms/GenreSelect';
 import RateSlider from 'components/Forms/RateSlider';
@@ -75,12 +74,11 @@ const Upload: React.FC = () => {
     if (!status.isAuthed) router.push('/');
   });
 
-  async function handleUpload(t: SonolusResourceLocator['type'], f: File) {
+  async function handleUpload(t: string, f: File) {
     const token = await user?.getIdToken();
-    const res = await client.upload.$post({
+    const res = await clientLegacy.upload.$post({
       body: {
         file: f,
-        type: t,
       },
       config: { headers: { Authorization: `Bearer ${token}` } },
     });

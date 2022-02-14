@@ -7,7 +7,8 @@ steps:
     args:
       - '-c'
       - |
-        echo 'FRONT_URL="${_FRONT_URL}"' >> .env
+        echo 'NEXT_PUBLIC_FRONT_URL="${_NEXT_PUBLIC_FRONT_URL}"' >> .env
+        echo 'NEXT_PUBLIC_GOOGLE_ANALYTICS_ID="${_NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}"' >> .env
         echo 'NEXT_PUBLIC_FIREBASE_API_KEY="${_NEXT_PUBLIC_FIREBASE_API_KEY}"' >> .env
         echo 'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="${_NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}"' >> .env
         echo 'NEXT_PUBLIC_FIREBASE_PROJECT_ID="${_NEXT_PUBLIC_FIREBASE_PROJECT_ID}"' >> .env
@@ -25,3 +26,5 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       ['app', 'deploy', '--appyaml=./deploy/frontend.yaml', '--stop-previous-version', '--quiet']
+
+timeout: 1800s

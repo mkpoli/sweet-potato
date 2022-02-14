@@ -23,9 +23,9 @@ import {
 } from '@chakra-ui/react';
 import { FiGlobe, FiKey, FiEdit, FiTrash2, FiCopy } from 'react-icons/fi';
 import { useAuth } from 'hooks/auth';
-import { client, clientLegacy } from 'framework/potato/client';
-import { Level } from 'models/Level';
+import { clientLegacy } from 'framework/potato/client';
 import SEO from 'components/SEO';
+import { Level } from 'framework/potato/legacy/@types';
 
 const MyPage: React.FC = () => {
   const [testURL, setTestURL] = useState<string>();
@@ -72,14 +72,14 @@ const MyPage: React.FC = () => {
     async function callAPI() {
       const token = await user?.getIdToken();
 
-      const me = await client.users
+      const me = await clientLegacy.users
         ._userId(profile.uid)
         .$get({ config: { headers: { Authorization: `Bearer ${token}` } } });
       setTestURL(`${process.env.API_URL}/test/${me.testId}`);
 
-      const uploaded = await client.users
-        ._userId(profile.uid)
-        .levels.list.$get({ config: { headers: { Authorization: `Bearer ${token}` } } });
+      const uploaded = await clientLegacy.users._userId(profile.uid).levels.list.$get({
+        config: { headers: { Authorization: `Bearer ${token}` } },
+      });
       setLevels(uploaded.items);
     }
     callAPI();

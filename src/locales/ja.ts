@@ -40,4 +40,8 @@ export default {
     RATING: '譜面の難しさ',
   },
   GENRE: { GENERAL: '一般', JPOP: 'J-pop', ANIME: 'アニメ', VOCALOID: 'ボーカロイド' },
+  UPLOAD_GUIDE: {
+    UPLOAD_GUIDELINE: '投稿ルール',
+    CREATE_CHARTS: '譜面の作り方',
+  },
 };

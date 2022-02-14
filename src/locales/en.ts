@@ -45,4 +45,8 @@ export default {
     ANIME: 'Anime',
     VOCALOID: 'Vocaloid',
   },
+  UPLOAD_GUIDE: {
+    UPLOAD_GUIDELINE: 'Upload Guideline',
+    CREATE_CHARTS: 'Create Charts',
+  },
 };

@@ -12,10 +12,14 @@ import {
   Image,
   Text,
   Button,
+  Grid,
+  GridItem,
+  Tooltip,
 } from '@chakra-ui/react';
 import FileInputComponent from 'react-file-input-previews-base64';
 import { useAuth } from 'hooks/auth';
 import { clientLegacy } from 'framework/potato/client';
+import UploadGuide from 'components/Card/UploadGuide';
 import InputForm from 'components/Forms/Input';
 import GenreSelect from 'components/Forms/GenreSelect';
 import RateSlider from 'components/Forms/RateSlider';
@@ -26,38 +30,48 @@ type fileName = {
   uploaded: string;
 };
 
-const fileType = (logo: string, text: string): JSX.Element => {
+const fileType = (logo: string, text: string, ext: string): JSX.Element => {
   return (
-    <Stack
-      px={[6, 6, 4]}
-      py={4}
-      spacing={[8, 8, 4]}
-      direction={['row', 'row', 'column']}
-      align="center"
-      bgColor="componentBg.light"
-      borderRadius="base"
-      textAlign="center"
+    <Tooltip
+      label={
+        <Box>
+          <Text>{ext}</Text>
+        </Box>
+      }
+      placement="top"
     >
-      <Box w={['48px']}>
-        <AspectRatio ratio={1}>
-          <Image
-            src={logo}
-            alt=""
-            objectFit="cover"
-            borderRadius="base"
-            userSelect="none"
-            pointerEvents="none"
-          />
-        </AspectRatio>
-      </Box>
-      <Box>
-        <Tag p={2} bgColor="white">
-          <Text fontSize="0.9em" noOfLines={1} fontWeight={700}>
-            {text}
-          </Text>
-        </Tag>
-      </Box>
-    </Stack>
+      <Stack
+        px={[6, 6, 4]}
+        py={4}
+        spacing={[8, 8, 4]}
+        direction={['row', 'row', 'column']}
+        align="center"
+        bgColor="componentBg.light"
+        borderRadius="base"
+        textAlign="center"
+        _hover={{ transform: 'translate(0, 5px)', transitionDuration: '0.1s' }}
+      >
+        <Box w={['48px']}>
+          <AspectRatio ratio={1}>
+            <Image
+              src={logo}
+              alt=""
+              objectFit="cover"
+              borderRadius="base"
+              userSelect="none"
+              pointerEvents="none"
+            />
+          </AspectRatio>
+        </Box>
+        <Box>
+          <Tag p={2} bgColor="white">
+            <Text fontSize="0.9em" noOfLines={1} fontWeight={700}>
+              {text}
+            </Text>
+          </Tag>
+        </Box>
+      </Stack>
+    </Tooltip>
   );
 };
 
@@ -161,75 +175,85 @@ const Upload: React.FC = () => {
           {t.UPLOAD_PAGE.PAGE_TITLE}
         </Heading>
 
-        <Box px={8} shadow="card" borderRadius="base">
-          <Box my={8} pt={4} userSelect="none">
-            <Heading my={2} fontSize="1em">
-              {t.UPLOAD_PAGE.SELECT_FILE}
-            </Heading>
-            <SimpleGrid columns={[1, 1, 3]} spacing={[0, 0, 4]}>
-              <Box>
-                <FileInputComponent
-                  labelText=""
-                  imagePreview={false}
-                  multiple={false}
-                  accept="image/*"
-                  callbackFunction={async (f: Record<string, File>) => {
-                    const fileName = await handleUpload('LevelCover', f.file);
-                    setCover(fileName);
-                  }}
-                  buttonComponent={fileType(
-                    '/image.png',
-                    cover?.original === undefined ? t.UPLOAD_PAGE.ARTWORK : cover.original,
-                  )}
-                />
+        <Grid my={8} templateColumns={{ base: 'repeat(1, 1fr)', xl: 'repeat(3, 1fr)' }} gap={6}>
+          <GridItem colSpan={1}>
+            <UploadGuide />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, xl: 2 }}>
+            <Box px={8} border="2px" borderColor="componentBg.light" borderRadius="base">
+              <Box my={2} pt={4} userSelect="none">
+                <Heading my={2} fontSize="1em">
+                  {t.UPLOAD_PAGE.SELECT_FILE}
+                </Heading>
+                <SimpleGrid columns={[1, 1, 3]} spacing={[0, 0, 4]}>
+                  <Box>
+                    <FileInputComponent
+                      labelText=""
+                      imagePreview={false}
+                      multiple={false}
+                      accept="image/*"
+                      callbackFunction={async (f: Record<string, File>) => {
+                        const fileName = await handleUpload('LevelCover', f.file);
+                        setCover(fileName);
+                      }}
+                      buttonComponent={fileType(
+                        '/image.png',
+                        cover?.original === undefined ? t.UPLOAD_PAGE.ARTWORK : cover.original,
+                        'PNG & JPEG',
+                      )}
+                    />
+                  </Box>
+                  <Box>
+                    <FileInputComponent
+                      labelText=""
+                      imagePreview={false}
+                      multiple={false}
+                      accept="audio/mpeg"
+                      callbackFunction={async (f: Record<string, File>) => {
+                        const fileName = await handleUpload('LevelBgm', f.file);
+                        setBgm(fileName);
+                      }}
+                      buttonComponent={fileType(
+                        '/cd.png',
+                        bgm?.original === undefined ? t.UPLOAD_PAGE.MUSIC_FILE : bgm.original,
+                        'MP3',
+                      )}
+                    />
+                  </Box>
+                  <Box>
+                    <FileInputComponent
+                      labelText=""
+                      imagePreview={false}
+                      multiple={false}
+                      accept="*"
+                      callbackFunction={async (f: Record<string, File>) => {
+                        const fileName = await handleUpload('LevelData', f.file);
+                        setData(fileName);
+                      }}
+                      buttonComponent={fileType(
+                        '/file.png',
+                        data?.original === undefined ? t.UPLOAD_PAGE.SCORE_FILE : data.original,
+                        'SUS',
+                      )}
+                    />
+                  </Box>
+                </SimpleGrid>
               </Box>
-              <Box>
-                <FileInputComponent
-                  labelText=""
-                  imagePreview={false}
-                  multiple={false}
-                  accept="audio/mpeg"
-                  callbackFunction={async (f: Record<string, File>) => {
-                    const fileName = await handleUpload('LevelBgm', f.file);
-                    setBgm(fileName);
-                  }}
-                  buttonComponent={fileType(
-                    '/cd.png',
-                    bgm?.original === undefined ? t.UPLOAD_PAGE.MUSIC_FILE : bgm.original,
-                  )}
-                />
+              <Box my={2} pb={4} userSelect="none">
+                <form onSubmit={handleSubmit}>
+                  <InputForm id="title" name={t.FORMS.TITLE} required={true} maxLength={50} />
+                  <InputForm id="artists" name={t.FORMS.ARTISTS} required={true} maxLength={50} />
+                  <InputForm id="author" name={t.FORMS.AUTHOR} required={true} maxLength={30} />
+                  <GenreSelect id="genre" />
+                  <RateSlider id="rate" />
+                  <Button my={8} size="full" type="submit" color="white" bgColor="potato">
+                    {t.UPLOAD_PAGE.UPLOAD}
+                  </Button>
+                </form>
               </Box>
-              <Box>
-                <FileInputComponent
-                  labelText=""
-                  imagePreview={false}
-                  multiple={false}
-                  accept="*"
-                  callbackFunction={async (f: Record<string, File>) => {
-                    const fileName = await handleUpload('LevelData', f.file);
-                    setData(fileName);
-                  }}
-                  buttonComponent={fileType(
-                    '/file.png',
-                    data?.original === undefined ? t.UPLOAD_PAGE.SCORE_FILE : data.original,
-                  )}
-                />
-              </Box>
-            </SimpleGrid>
-          </Box>
-          <Box my={8} pb={4} userSelect="none">
-            <form onSubmit={handleSubmit}>
-              <InputForm id="title" name={t.FORMS.TITLE} required={true} maxLength={50} />
-              <InputForm id="artists" name={t.FORMS.ARTISTS} required={true} maxLength={50} />
-              <InputForm id="author" name={t.FORMS.AUTHOR} required={true} maxLength={30} />
-              <GenreSelect id="genre" />
-              <RateSlider id="rate" />
-              <Button my={8} size="full" type="submit" color="white" bgColor="potato">
-                {t.UPLOAD_PAGE.UPLOAD}
-              </Button>
-            </form>
-          </Box>
-        </Box>
+            </Box>
+          </GridItem>
+        </Grid>
       </Container>
     </>
   );

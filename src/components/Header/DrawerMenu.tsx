@@ -106,7 +106,7 @@ const DrawerMenu: React.FC = () => {
               </Box>
             </DrawerBody>
             <DrawerFooter>
-              <Box pb={4} w="full" fontSize={['0.65em', '0.85em', '0.9em']} fontWeight="bold">
+              <Box pb={4} w="full" fontSize={['0.9em', '0.9em', '1em']} fontWeight="bold">
                 <Menu>
                   <MenuButton as={Button} leftIcon={<MdLanguage />}>
                     Change Language

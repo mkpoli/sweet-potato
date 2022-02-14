@@ -37,7 +37,7 @@ const Home: React.FC = () => {
           {t.TOP_PAGE.NEW_SCORE_LIST}
         </Heading>
 
-        <SimpleGrid columns={[1, 2, 2, 3, 4]} spacing={[2, 4, 4, 4, 6]}>
+        <SimpleGrid columns={[1, 2, 2, 3, 4, 5, 6]} spacing={[4, 4, 4, 4, 6, 6, 8]}>
           {levels.length === 0 ? (
             <>
               {(() => {

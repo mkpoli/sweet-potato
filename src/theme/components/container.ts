@@ -1,7 +1,6 @@
 const baseStyle = {
   w: '100%',
-  maxW: '1024px',
-  px: [2, 4, 5],
+  maxW: { base: '1024px', xl: '1120px', '2xl': '1280px', '3xl': '55%' },
 };
 
 const variants = {

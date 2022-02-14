@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  useBreakpointValue,
+  useMediaQuery,
   Container,
   Flex,
   Box,
@@ -21,6 +21,7 @@ import DrawerMenu from './DrawerMenu';
 const HeaderNav: React.FC = () => {
   const { status } = useAuth();
   const { t } = useLocale();
+  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
 
   return (
     <Container>
@@ -35,7 +36,10 @@ const HeaderNav: React.FC = () => {
           <Logo />
         </Link>
         <Spacer />
-        <Flex align="center" style={useBreakpointValue({ base: { display: 'none' }, md: {} })}>
+        <Flex
+          align="center"
+          style={!isLargerThan1024 ? { display: 'none', visibility: 'hidden' } : {}}
+        >
           {!status.isLoaded ? (
             <Flex align="center" fontSize="1em" w="5em">
               <Spinner size="sm" color="potato" />

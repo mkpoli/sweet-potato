@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /mypage
+Disallow: /levels/upload
+
+User-agent: Yahoo Pipes 1.0
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
+
+Sitemap: https://sweet-potato.dev/sitemap/sitemap.xml

@@ -29,8 +29,11 @@ export default {
     MUSIC_FILE: 'Music File',
     SCORE_FILE: 'Score File',
     UPLOAD: 'UPLOAD',
+  },
+  UPLOAD_ERROR: {
+    NOT_SUS: 'Only .sus is supported as a score file.',
     NEED_MORE_FILE: 'The required files have not been uploaded.',
-    UPLOAD_FAILED: 'Upload failed. Please try again later.',
+    OTHER: 'Upload failed. Please try again later.',
   },
   FORMS: {
     TITLE: 'Title',
@@ -48,5 +51,8 @@ export default {
   UPLOAD_GUIDE: {
     UPLOAD_GUIDELINE: 'Upload Guideline',
     CREATE_CHARTS: 'Create Charts',
+  },
+  FILE_LIST: {
+    CHANGE: 'Change',
   },
 };

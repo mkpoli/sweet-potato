@@ -29,8 +29,11 @@ export default {
     MUSIC_FILE: '音楽ファイル',
     SCORE_FILE: '譜面ファイル',
     UPLOAD: '投稿する',
+  },
+  UPLOAD_ERROR: {
+    NOT_SUS: '譜面ファイルは.susファイルのみアップロードできます。',
     NEED_MORE_FILE: '必要なファイルがアップロードされていません。',
-    UPLOAD_FAILED: 'アップロードに失敗しました。時間を空けて再度お試しください。',
+    OTHER: 'アップロードに失敗しました。時間を空けて再度お試しください。',
   },
   FORMS: {
     TITLE: 'タイトル',
@@ -43,5 +46,8 @@ export default {
   UPLOAD_GUIDE: {
     UPLOAD_GUIDELINE: '投稿ルール',
     CREATE_CHARTS: '譜面の作り方',
+  },
+  FILE_LIST: {
+    CHANGE: '変更',
   },
 };

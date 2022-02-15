@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   useMediaQuery,
   Container,
@@ -22,6 +22,11 @@ const HeaderNav: React.FC = () => {
   const { status } = useAuth();
   const { t } = useLocale();
   const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
+  const [visible, setVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    setVisible(isLargerThan1024);
+  }, [isLargerThan1024]);
 
   return (
     <Container>
@@ -36,10 +41,7 @@ const HeaderNav: React.FC = () => {
           <Logo />
         </Link>
         <Spacer />
-        <Flex
-          align="center"
-          style={!isLargerThan1024 ? { display: 'none', visibility: 'hidden' } : {}}
-        >
+        <Flex align="center" style={{ visibility: visible ? 'visible' : 'hidden' }}>
           {!status.isLoaded ? (
             <Flex align="center" fontSize="1em" w="5em">
               <Spinner size="sm" color="potato" />

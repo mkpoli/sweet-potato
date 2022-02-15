@@ -55,4 +55,8 @@ export default {
   FILE_LIST: {
     CHANGE: 'Change',
   },
+  EDIT_PAGE: {
+    PAGE_TITLE: 'Edit Score',
+    PUBLISH: 'Make Public',
+  },
 };

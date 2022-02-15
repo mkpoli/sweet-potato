@@ -21,7 +21,7 @@ import {
   Flex,
   Spacer,
 } from '@chakra-ui/react';
-import { FiGlobe, FiKey, FiEdit, FiTrash2, FiCopy } from 'react-icons/fi';
+import { FiEdit, FiTrash2, FiCopy } from 'react-icons/fi';
 import { useAuth } from 'hooks/auth';
 import { clientLegacy } from 'framework/potato/client';
 import SEO from 'components/SEO';
@@ -34,35 +34,6 @@ const MyPage: React.FC = () => {
   const { t } = useLocale();
   const { user, status, profile } = useAuth();
   const { onCopy } = useClipboard(`${testURL}`);
-
-  async function makePublic(id: string, isPublic: boolean) {
-    const token = await user?.getIdToken();
-    const l = await clientLegacy.levels
-      ._levelName(id)
-      .$get({ config: { headers: { Authorization: `Bearer ${token}` } } });
-
-    // APIクソ仕様
-    const item = l.item;
-    await clientLegacy.levels._levelName(id).$patch({
-      body: {
-        name: item.name,
-        version: 1,
-        rating: item.rating,
-        engine: 'pjsekai',
-        title: { ja: `${item.title}` },
-        artists: { ja: `${item.artists}` },
-        author: { ja: `${item.author}` },
-        cover: item.cover,
-        bgm: item.bgm,
-        data: item.data,
-        description: { ja: `${item.description}` },
-        genre: item.genre,
-        public: isPublic,
-        userId: item.userId,
-      },
-      config: { headers: { Authorization: `Bearer ${token}` } },
-    });
-  }
 
   useEffect(() => {
     if (!status.isAuthed) router.push('/');
@@ -184,34 +155,22 @@ const MyPage: React.FC = () => {
                     <Td>
                       <SimpleGrid spacing={4}>
                         <Button
-                          leftIcon={<FiGlobe />}
-                          color="white"
-                          bgColor="potato"
-                          onClick={async () => {
-                            makePublic(level.name, true);
-                          }}
-                        >
-                          {t.MY_PAGE.PUBLIC}
-                        </Button>
-                        <Button
-                          leftIcon={<FiKey />}
-                          color="white"
-                          bgColor="potato"
-                          onClick={async () => {
-                            makePublic(level.name, false);
-                          }}
-                        >
-                          {t.MY_PAGE.PRIVATE}
-                        </Button>
-                        <Button
                           leftIcon={<FiEdit />}
                           color="white"
                           bgColor="potato"
-                          isDisabled
-                          _hover={{}}
+                          onClick={() => {
+                            router.push(
+                              {
+                                pathname: `/levels/${level.name}/edit`,
+                                query: { uid: profile.uid },
+                              },
+                              `/levels/${level.name}/edit`,
+                            );
+                          }}
                         >
                           {t.MY_PAGE.EDIT}
                         </Button>
+
                         <Button
                           leftIcon={<FiTrash2 />}
                           color="white"

@@ -15,11 +15,12 @@ import { useLocale } from 'hooks/locales';
 
 type Props = {
   id: string;
+  value?: number;
 };
 
-const RateSlider: React.FC<Props> = ({ id }) => {
+const RateSlider: React.FC<Props> = ({ id, value }) => {
   const { t } = useLocale();
-  const [sliderValue, setSliderValue] = React.useState(20);
+  const [sliderValue, setSliderValue] = React.useState(value === undefined ? 20 : value);
   const [showTooltip, setShowTooltip] = React.useState(false);
 
   return (
@@ -29,7 +30,7 @@ const RateSlider: React.FC<Props> = ({ id }) => {
       </Flex>
       <Input id={id} value={sliderValue} isDisabled style={{ display: 'none' }} />
       <Slider
-        defaultValue={20}
+        defaultValue={value === undefined ? 20 : value}
         min={1}
         max={50}
         onChange={(v) => setSliderValue(v)}

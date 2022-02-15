@@ -24,6 +24,7 @@ steps:
     args: ['build']
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy', '--appyaml=./deploy/frontend.yaml', '--quiet']
+    args:
+      ['app', 'deploy', '--appyaml=./deploy/frontend.yaml', '--no-stop-previous-version', '--quiet']
 
 timeout: 1800s

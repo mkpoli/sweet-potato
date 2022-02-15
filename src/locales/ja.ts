@@ -50,4 +50,8 @@ export default {
   FILE_LIST: {
     CHANGE: '変更',
   },
+  EDIT_PAGE: {
+    PAGE_TITLE: '譜面を編集',
+    PUBLISH: '公開する',
+  },
 };

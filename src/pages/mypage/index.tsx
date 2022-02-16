@@ -29,7 +29,7 @@ import { Level } from 'framework/potato/legacy/@types';
 
 const MyPage: React.FC = () => {
   const [testURL, setTestURL] = useState<string>();
-  const [levels, setLevels] = useState<Level[]>([]);
+  const [levels, setLevels] = useState<Level[]>();
   const router = useRouter();
   const { t } = useLocale();
   const { user, status, profile } = useAuth();
@@ -37,7 +37,7 @@ const MyPage: React.FC = () => {
 
   useEffect(() => {
     if (!status.isAuthed) router.push('/');
-    if (levels.length !== 0) return;
+    if (levels !== undefined) return;
 
     // バックエンドができるまでの仮実装
     async function callAPI() {
@@ -71,7 +71,7 @@ const MyPage: React.FC = () => {
         </Heading>
         <SimpleGrid columns={[1, 1, 2]} spacing={10}>
           <Box p={4} shadow="card" borderRadius="base" userSelect="none">
-            <Skeleton isLoaded={levels.length !== 0}>
+            <Skeleton isLoaded={testURL !== undefined}>
               <Flex>
                 <Heading my={2} fontSize="1em">
                   {t.MY_PAGE.YOUR_TEST_SERVER}
@@ -95,7 +95,7 @@ const MyPage: React.FC = () => {
           </Box>
 
           <Box p={4} shadow="card" borderRadius="base" userSelect="none">
-            <Skeleton isLoaded={levels.length !== 0}>
+            <Skeleton isLoaded={levels !== undefined}>
               <Flex>
                 <Heading my={2} fontSize="1em">
                   {t.MY_PAGE.PROFILE}
@@ -123,7 +123,7 @@ const MyPage: React.FC = () => {
           borderRadius="base"
           style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}
         >
-          <Skeleton isLoaded={levels.length !== 0}>
+          <Skeleton isLoaded={levels !== undefined}>
             <Table>
               <Thead>
                 <Tr>
@@ -133,57 +133,61 @@ const MyPage: React.FC = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {levels.map((level: Level) => (
-                  <Tr key={level.name}>
-                    <Td>
-                      <Box w="120px">
-                        <AspectRatio ratio={1}>
-                          <Image
-                            src={`${process.env.API_URL}${level.cover.url}`}
-                            alt=""
-                            objectFit="cover"
-                            borderRadius="base"
-                            userSelect="none"
-                            pointerEvents="none"
-                          />
-                        </AspectRatio>
-                      </Box>
-                    </Td>
-                    <Td>
-                      <Text>{level.title}</Text>
-                    </Td>
-                    <Td>
-                      <SimpleGrid spacing={4}>
-                        <Button
-                          leftIcon={<FiEdit />}
-                          color="white"
-                          bgColor="potato"
-                          onClick={() => {
-                            router.push(
-                              {
-                                pathname: `/levels/${level.name}/edit`,
-                                query: { uid: profile.uid },
-                              },
-                              `/levels/${level.name}/edit`,
-                            );
-                          }}
-                        >
-                          {t.MY_PAGE.EDIT}
-                        </Button>
+                {levels !== undefined ? (
+                  <>
+                    {levels.map((level: Level) => (
+                      <Tr key={level.name}>
+                        <Td>
+                          <Box w="120px">
+                            <AspectRatio ratio={1}>
+                              <Image
+                                src={`${process.env.API_URL}${level.cover.url}`}
+                                alt=""
+                                objectFit="cover"
+                                borderRadius="base"
+                                userSelect="none"
+                                pointerEvents="none"
+                              />
+                            </AspectRatio>
+                          </Box>
+                        </Td>
+                        <Td>
+                          <Text>{level.title}</Text>
+                        </Td>
+                        <Td>
+                          <SimpleGrid spacing={4}>
+                            <Button
+                              leftIcon={<FiEdit />}
+                              color="white"
+                              bgColor="potato"
+                              onClick={() => {
+                                router.push(
+                                  {
+                                    pathname: `/levels/${level.name}/edit`,
+                                    query: { uid: profile.uid },
+                                  },
+                                  `/levels/${level.name}/edit`,
+                                );
+                              }}
+                            >
+                              {t.MY_PAGE.EDIT}
+                            </Button>
 
-                        <Button
-                          leftIcon={<FiTrash2 />}
-                          color="white"
-                          bgColor="potato"
-                          isDisabled
-                          _hover={{}}
-                        >
-                          {t.MY_PAGE.DELETE}
-                        </Button>
-                      </SimpleGrid>
-                    </Td>
-                  </Tr>
-                ))}
+                            <Button
+                              leftIcon={<FiTrash2 />}
+                              color="white"
+                              bgColor="potato"
+                              isDisabled
+                              _hover={{}}
+                            >
+                              {t.MY_PAGE.DELETE}
+                            </Button>
+                          </SimpleGrid>
+                        </Td>
+                      </Tr>
+                    ))}
+                  </>
+                ) : undefined}
               </Tbody>
             </Table>
           </Skeleton>

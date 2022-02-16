@@ -7,7 +7,7 @@ export default async function sessionApi(req: Req, res: Res) {
 
   const auth = admin.auth();
 
-  const expiresIn = 60 * 60 * 24 * 14 * 1000;
+  const expiresIn = 60 * 60 * 24 * 3 * 1000;
   const id = (req.body.token || '').toString();
   const sessionCookie = await auth.createSessionCookie(id, { expiresIn });
 

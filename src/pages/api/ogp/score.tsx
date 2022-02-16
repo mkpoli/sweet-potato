@@ -1,6 +1,6 @@
 import type { NextApiRequest as Req, NextApiResponse as Res } from 'next';
 import ReactDOM from 'react-dom/server';
-import { chromium } from 'playwright';
+import puppeteer from 'puppeteer';
 import { client } from 'framework/potato/client';
 import { Level } from 'framework/potato/api/@types';
 import OGPImage from 'components/Card/OGPImage';
@@ -30,12 +30,13 @@ export default async function ogp(req: Req, res: Res) {
   const viewport = { width: 1200, height: 630 };
 
   // launch browser
-  const browser = await chromium.launch({ headless: true });
-  const page = await browser.newPage({ viewport });
+  const browser = await puppeteer.launch({ headless: true });
+  const page = await browser.newPage();
+  await page.setViewport(viewport);
 
   // generate page
   const markup = ReactDOM.renderToStaticMarkup(<OGPImage {...level} />);
-  await page.setContent(markup, { waitUntil: 'networkidle' });
+  await page.setContent(markup, { waitUntil: 'networkidle0' });
 
   // take screenshot
   const buf = await page.screenshot({ type: 'png' });

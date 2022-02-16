@@ -44,8 +44,7 @@ steps:
       - --memory=4096Mi
       - --max-instances=1
       - --min-instances=0
-      - --use-http2
-      - --allow-unauthenticated
+      - --no-traffic
       - --no-cpu-throttling
       - --ingress=all
       - --update-secrets=FIREBASE_ADMIN_PROJECT_ID=FIREBASE_ADMIN_PROJECT_ID:latest
@@ -59,16 +58,5 @@ timeout: 1800s
 
 substitutions:
   _GCR_HOSTNAME: asia.gcr.io
-  _SERVICE_NAME: sweet-potato
+  _SERVICE_NAME: frontend
   _DEPLOY_REGION: asia-northeast1
-
-availableSecrets:
-  secretManager:
-    - versionName: projects/$PROJECT_ID/secrets/FIREBASE_ADMIN_PROJECT_ID/versions/latest
-      env: FIREBASE_ADMIN_PROJECT_ID
-
-    - versionName: projects/$PROJECT_ID/secrets/FIREBASE_ADMIN_CLIENT_EMAIL/versions/latest
-      env: FIREBASE_ADMIN_CLIENT_EMAIL
-
-    - versionName: projects/$PROJECT_ID/secrets/FIREBASE_ADMIN_PRIVATE_KEY/versions/latest
-      env: FIREBASE_ADMIN_PRIVATE_KEY

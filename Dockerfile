@@ -10,7 +10,7 @@ COPY . .
 RUN yarn build
 
 # runner
-FROM node:16-slim AS runner
+FROM mcr.microsoft.com/playwright:focal AS runner
 ENV NODE_ENV=production
 
 WORKDIR /app

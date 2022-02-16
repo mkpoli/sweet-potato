@@ -22,7 +22,7 @@ const ScoreDetail: React.FC<Level> = ({ name, title, cover, description, author 
         path={`/levels/${name}`}
         title={title}
         description={description}
-        thumbnail={`${process.env.NEXT_PUBLIC_FRONT_URL}/api/ogp/score?id=${name}`}
+        thumbnail={`${process.env.NEXT_PUBLIC_FRONT_URL}/api/ogp/${name}`}
         allowIndex={true}
       />
       <Container>

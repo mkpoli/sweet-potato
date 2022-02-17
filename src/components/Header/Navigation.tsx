@@ -54,7 +54,7 @@ const HeaderNav: React.FC = () => {
           <>
             {status.isAuthed ? (
               <Box mx={[0, 2, 4]} fontSize="1em" w="8em">
-                <Link href="/mypage">
+                <Link href="/dashboard/contents/levels">
                   <Button leftIcon={<FiUser />} border="1px" width="full">
                     {t.HEADER.MYPAGE}
                   </Button>

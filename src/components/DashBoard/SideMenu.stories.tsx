@@ -6,6 +6,6 @@ export default { title: 'DashBoard/SideMenu' };
 
 export const normal = (): JSX.Element => (
   <Box h="100%" maxW="300px">
-    <SideMenu />
+    <SideMenu index={0} />
   </Box>
 );

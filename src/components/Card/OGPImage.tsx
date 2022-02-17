@@ -23,7 +23,7 @@ const OGPImage = ({ title, author, cover, rating }: Level) => (
               <GridItem colSpan={1}>
                 <AspectRatio ratio={1}>
                   <Image
-                    src={`${process.env.API_URL}${cover.url}`}
+                    src={`${process.env.API_URL_LEGACY}${cover.url}`}
                     alt=""
                     objectFit="cover"
                     borderRadius="1em"

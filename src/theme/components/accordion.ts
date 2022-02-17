@@ -28,7 +28,7 @@ const baseStyleButton: SystemStyleObject = {
   },
   px: 4,
   py: 2,
-  my: 4,
+  mt: 4,
 };
 
 const baseStylePanel: SystemStyleObject = {

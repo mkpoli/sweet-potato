@@ -25,7 +25,13 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <SEO path="/" title={t.TOP_PAGE.PAGE_TITLE} description="" thumbnail="" allowIndex={true} />
+      <SEO
+        path="/"
+        title={t.TOP_PAGE.PAGE_TITLE}
+        description="Fan-made Rhythm Game Community"
+        thumbnail=""
+        allowIndex={true}
+      />
       <Container>
         <Box mb={24} textAlign="center">
           <Heading mt={8} fontSize={['2em', '2.4em', '2.4em', '2.4em', '2.8em', '3.2em']}>

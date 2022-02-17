@@ -13,7 +13,7 @@ const colors = {
     dark: 'rgba(183, 183, 183)',
   },
   text: {
-    light: 'rgba(31, 31, 31)',
+    light: 'rgba(45, 45, 45)',
     dark: 'rgba(241, 241, 241)',
   },
   potato: 'rgba(144, 49, 170)',

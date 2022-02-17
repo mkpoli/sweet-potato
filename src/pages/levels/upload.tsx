@@ -111,7 +111,7 @@ const Upload: React.FC = () => {
     });
 
     if (res.status === 200) {
-      router.push('/mypage');
+      router.push('/dashboard/contents/levels');
     } else {
       alert(t.UPLOAD_ERROR.OTHER);
     }

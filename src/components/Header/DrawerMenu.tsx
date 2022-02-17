@@ -88,7 +88,7 @@ const DrawerMenu: React.FC = () => {
                               {t.HEADER.UPLOAD}
                             </Button>
                           </Link>
-                          <Link href="/mypage">
+                          <Link href="/dashboard/contents/levels">
                             <Button leftIcon={<FiUser />} border="1px" width="full">
                               {t.HEADER.MYPAGE}
                             </Button>

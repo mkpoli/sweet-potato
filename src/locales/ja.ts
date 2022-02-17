@@ -9,19 +9,6 @@ export default {
     NEW_SCORE_LIST: '新しい譜面',
     NO_MORE_SCORE: '全ての譜面を読み込みました。',
   },
-  MY_PAGE: {
-    PAGE_TITLE: 'マイページ',
-    YOUR_TEST_SERVER: 'あなたのテスト用URL',
-    PROFILE: 'プロフィール',
-    ARTWORK: 'アートワーク',
-    TITLE: 'タイトル',
-    ACTION: 'アクション',
-    COPY: 'コピー',
-    EDIT: '編集',
-    DELETE: '削除',
-    PUBLIC: '公開',
-    PRIVATE: '非公開',
-  },
   UPLOAD_PAGE: {
     PAGE_TITLE: '譜面を投稿する',
     SELECT_FILE: 'ファイルを選択',
@@ -53,5 +40,22 @@ export default {
   EDIT_PAGE: {
     PAGE_TITLE: '譜面を編集',
     PUBLISH: '公開する',
+  },
+  DASHBOARD: {
+    SETTINGS: {
+      MENU_TITLE: '設定',
+      TEST: {
+        PAGE_TITLE: 'テスト用サーバー',
+        TEST_URL: 'あなたのテスト用URL',
+        COPY: 'コピー',
+      },
+    },
+    CONTENTS: {
+      MENU_TITLE: 'コンテンツ',
+      LEVELS: {
+        PAGE_TITLE: '投稿した譜面',
+        EDIT: '編集',
+      },
+    },
   },
 };

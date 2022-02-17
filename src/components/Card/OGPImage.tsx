@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import {
   ChakraProvider,
   Grid,
@@ -16,16 +15,6 @@ import { Level } from 'framework/potato/api/@types';
 
 const OGPImage = ({ title, author, cover, rating }: Level) => (
   <>
-    <Head>
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.3.1/dist/css/yakuhanjp.min.css"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
-        rel="stylesheet"
-      />
-    </Head>
     <ChakraProvider theme={theme}>
       <Box p={12} w="full" h="full" bgGradient="linear(to-r, potato, pink)">
         <Box p={8} w="full" h="full" bgColor="white" borderRadius="1em">
@@ -34,7 +23,7 @@ const OGPImage = ({ title, author, cover, rating }: Level) => (
               <GridItem colSpan={1}>
                 <AspectRatio ratio={1}>
                   <Image
-                    src={`${process.env.API_URL}${cover.url}`}
+                    src={`${process.env.API_URL_LEGACY}${cover.url}`}
                     alt=""
                     objectFit="cover"
                     borderRadius="1em"
@@ -42,7 +31,9 @@ const OGPImage = ({ title, author, cover, rating }: Level) => (
                 </AspectRatio>
               </GridItem>
               <GridItem px={2} colSpan={2}>
-                <Heading fontSize="2.8em">{title}</Heading>
+                <Heading fontSize="2.8em" fontWeight={700}>
+                  {title}
+                </Heading>
                 <Box my={4}>
                   <RatingLarge rate={rating} />
                 </Box>

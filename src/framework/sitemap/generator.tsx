@@ -1,4 +1,5 @@
 import { staticList } from 'framework/sitemap/static';
+import { fetchNewScoreList } from 'framework/sitemap/new';
 
 export const HOST = process.env.NEXT_PUBLIC_FRONT_URL;
 
@@ -17,6 +18,12 @@ export async function generateSitemapXml() {
 
   for (const url of staticList) {
     UrlList += generateUrlXml(HOST + url.path, new Date().toISOString(), url.freq);
+  }
+
+  const newScore = await fetchNewScoreList();
+  console.log(newScore.length);
+  for (const score of newScore) {
+    UrlList += generateUrlXml(HOST + score.path, new Date(score.lastMod).toISOString(), score.freq);
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>

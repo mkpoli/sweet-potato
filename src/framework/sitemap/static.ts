@@ -8,4 +8,8 @@ export const staticList: Url[] = [
     path: '', // root
     freq: 'always',
   },
+  {
+    path: '/levels/new',
+    freq: 'always',
+  },
 ];

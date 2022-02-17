@@ -6,7 +6,7 @@ type SEO = {
   title: string;
   description: string;
   thumbnail: string;
-
+  keywords?: string;
   allowIndex: boolean;
 };
 
@@ -15,6 +15,7 @@ const SEOTags: React.FC<SEO> = ({
   title,
   description,
   thumbnail,
+  keywords,
   allowIndex,
 }): JSX.Element => {
   title = title + '｜Sweet Potato';
@@ -32,7 +33,7 @@ const SEOTags: React.FC<SEO> = ({
       )}
 
       <link rel="canonical" href={domain} />
-      <meta name="keywords" content="創作譜面,Sonolus,Sweet Potato" />
+      <meta name="keywords" content={`創作譜面,Sonolus,Sweet Potato,${keywords}`} />
       <meta name="description" content={description} />
 
       <meta property="og:title" content={title} />

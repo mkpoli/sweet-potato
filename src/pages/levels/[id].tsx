@@ -21,7 +21,8 @@ const ScoreDetail: React.FC<Level> = ({ name, title, cover, description, author 
       <SEO
         path={`/levels/${name}`}
         title={title}
-        description={description}
+        description={`${author}さんが${title}を公開しました。`}
+        keywords={`${author},${title}`}
         thumbnail={`${process.env.NEXT_PUBLIC_FRONT_URL}/api/ogp/${name}`}
         allowIndex={true}
       />

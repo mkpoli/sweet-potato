@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useLocale } from 'hooks/locales';
-import { Container, SimpleGrid, Flex, Skeleton, Text, Heading, Button } from '@chakra-ui/react';
-import Score from 'components/Card/Score';
+import { Container, SimpleGrid, Flex, Skeleton, Heading, Box } from '@chakra-ui/react';
+import { FiExternalLink, FiArrowRight } from 'react-icons/fi';
 import { client } from 'framework/potato/client';
-import { Level } from 'models/Level';
+import { Level } from 'framework/potato/api/@types';
 import SEO from 'components/SEO';
+import Score from 'components/Card/Score';
+import Link from 'components/Link';
 
 const Home: React.FC = () => {
   const { t } = useLocale();
-  const [levels, setLevels] = useState<Level[]>([]);
-  const [nextPage, setNextPage] = useState<number>(0);
-  const [end, setEnd] = useState<boolean>(false);
+  const [levels, setLevels] = useState<Level[]>();
 
   const fetchScores = async () => {
-    const raw = await client.levels.list.$get({ query: { page: nextPage } });
-    setLevels(levels.concat(raw.items));
-
-    if (raw.items.length !== 20) {
-      setEnd(true);
-      return;
-    }
-    setNextPage(nextPage + 1);
+    const raw = await client.levels.list.$get({ query: { page: 0 } });
+    setLevels(raw.items);
   };
 
   useEffect(() => {
-    if (levels.length !== 0) return;
+    if (levels !== undefined) return;
 
     fetchScores();
   });
@@ -33,45 +27,58 @@ const Home: React.FC = () => {
     <>
       <SEO path="/" title={t.TOP_PAGE.PAGE_TITLE} description="" thumbnail="" allowIndex={true} />
       <Container>
+        <Box mb={24} textAlign="center">
+          <Heading mt={8} fontSize={['2em', '2.4em', '2.4em', '2.4em', '2.8em', '3.2em']}>
+            Fan-made
+            <br />
+            Rhythm Game Community
+          </Heading>
+          <Box>
+            <Link href="https://wiki.purplepalette.net/home" isExternal>
+              <Flex mt={4} align="center" justify="center" color="potato" gap={2}>
+                <Heading fontSize="1.2em">See Wiki</Heading>
+                <Box fontSize="1.2em">
+                  <FiExternalLink />
+                </Box>
+              </Flex>
+            </Link>
+          </Box>
+        </Box>
         <Heading mt={[4, 4, 4, 4, 6]} mb={[6, 6, 6, 6, 8]} fontSize="1.4em" textAlign="center">
           {t.TOP_PAGE.NEW_SCORE_LIST}
         </Heading>
 
-        <SimpleGrid columns={[1, 2, 2, 3, 4, 5, 6]} spacing={[4, 4, 4, 4, 6, 6, 8]}>
-          {levels.length === 0 ? (
-            <>
-              {(() => {
-                const rep = [];
-                for (let i = 0; i < 8; i++) {
-                  rep.push(<Skeleton key={i} height="300px" borderRadius="base" />);
-                }
-                return <>{rep}</>;
-              })()}
-            </>
-          ) : (
-            <>
-              {levels.map((level: Level) => (
-                <Score key={level.createdTime} {...level} />
-              ))}
-            </>
-          )}
-        </SimpleGrid>
-        <Flex my={8} justify="center" width="full">
-          {!end ? (
-            <Button
-              color="white"
-              bgColor="potato"
-              width={['100%', '40%']}
-              onClick={() => {
-                fetchScores();
-              }}
-            >
-              {t.TOP_PAGE.LOAD_MORE}
-            </Button>
-          ) : (
-            <Text fontSize="0.9em">{t.TOP_PAGE.NO_MORE_SCORE}</Text>
-          )}
-        </Flex>
+        <Box my={8}>
+          <SimpleGrid columns={[1, 2, 2, 3, 4, 5, 6]} spacing={[4, 4, 4, 4, 6, 6, 8]}>
+            {levels === undefined ? (
+              <>
+                {(() => {
+                  const rep = [];
+                  for (let i = 0; i < 10; i++) {
+                    rep.push(<Skeleton key={i} height="300px" borderRadius="base" />);
+                  }
+                  return <>{rep}</>;
+                })()}
+              </>
+            ) : (
+              <>
+                {levels.slice(0, 10).map((level: Level) => (
+                  <Score key={level.createdTime} {...level} />
+                ))}
+              </>
+            )}
+          </SimpleGrid>
+          <Box>
+            <Link href="/levels/new">
+              <Flex mt={[6, 6, 6, 6, 8]} align="center" justify="center" color="potato" gap={2}>
+                <Heading fontSize="1.2em">もっと見る</Heading>
+                <Box fontSize="1.2em">
+                  <FiArrowRight />
+                </Box>
+              </Flex>
+            </Link>
+          </Box>
+        </Box>
       </Container>
     </>
   );

@@ -31,7 +31,7 @@ const ScoreDetail: React.FC<Level> = ({ name, title, cover, description, author 
           <Box w={['100%', '100%', '240px']}>
             <AspectRatio ratio={[4 / 3, 16 / 9, 1]}>
               <Image
-                src={`${process.env.API_URL}${cover.url}`}
+                src={`${process.env.API_URL_LEGACY}${cover.url}`}
                 alt=""
                 objectFit="cover"
                 borderRadius="base"

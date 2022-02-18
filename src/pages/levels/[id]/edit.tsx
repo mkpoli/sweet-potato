@@ -12,10 +12,20 @@ import {
   GridItem,
   List,
   Switch,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Text,
 } from '@chakra-ui/react';
 import { useAuth } from 'hooks/auth';
+import { BsTwitter } from 'react-icons/bs';
 import { client, clientLegacy } from 'framework/potato/client';
 import { Level } from 'framework/potato/api/@types';
+import { TwitterShareButton } from 'react-share';
 import InputForm from 'components/Forms/Input';
 import GenreSelect from 'components/Forms/GenreSelect';
 import RateSlider from 'components/Forms/RateSlider';
@@ -36,6 +46,9 @@ const Upload: React.FC<Level> = ({ name, title, artists, author, rating }) => {
   const [cover, setCover] = useState<fileName>();
   const [bgm, setBgm] = useState<fileName>();
   const [data, setData] = useState<fileName>();
+
+  const [shareModal, setShareModal] = useState<boolean>(false);
+  const [updateModal, setUpdateModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (!status.isAuthed) router.push('/');
@@ -125,7 +138,12 @@ const Upload: React.FC<Level> = ({ name, title, artists, author, rating }) => {
     });
 
     if (res.status === 200) {
-      router.push('/mypage');
+      if (tar.public.checked) {
+        setShareModal(true);
+        return;
+      }
+
+      setUpdateModal(true);
     } else {
       alert(t.UPLOAD_ERROR.OTHER);
     }
@@ -262,11 +280,69 @@ const Upload: React.FC<Level> = ({ name, title, artists, author, rating }) => {
           </Grid>
         </form>
       </Container>
+      <ShareModal opened={shareModal} onClose={() => setShareModal(false)} id={name} />
+      <UpdateModal opened={updateModal} onClose={() => setUpdateModal(false)} id={name} />
     </>
   );
 };
 
 export default Upload;
+
+const UpdateModal: React.FC<{ opened: boolean; onClose: () => void; id: string }> = ({
+  opened,
+  onClose,
+}) => {
+  return (
+    <Modal isOpen={opened} onClose={onClose} isCentered>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>✅ 成功</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Text>譜面情報を更新しました。</Text>
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={onClose}>Close</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
+
+const ShareModal: React.FC<{ opened: boolean; onClose: () => void; id: string }> = ({
+  opened,
+  onClose,
+  id,
+}) => {
+  return (
+    <Modal isOpen={opened} onClose={onClose} isCentered>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>🎉 譜面が公開されました！</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Box my={8} textAlign="center">
+            <TwitterShareButton
+              url={`${process.env.NEXT_PUBLIC_FRONT_URL}/levels/${id}`}
+              title="新しい譜面を投稿しました！"
+              hashtags={['創作譜面', 'SweetPotato']}
+            >
+              <Button color="white" bgColor="#1DA1F2" size="lg">
+                <Box mr={2}>
+                  <BsTwitter />
+                </Box>
+                ツイートする
+              </Button>
+            </TwitterShareButton>
+          </Box>
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={onClose}>Close</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
 
 export async function getServerSideProps(context: NextPageContext): Promise<{
   props?: Level;

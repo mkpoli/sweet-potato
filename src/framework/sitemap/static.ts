@@ -12,4 +12,8 @@ export const staticList: Url[] = [
     path: '/levels/new',
     freq: 'always',
   },
+  {
+    path: '/tos',
+    freq: 'weekly',
+  },
 ];

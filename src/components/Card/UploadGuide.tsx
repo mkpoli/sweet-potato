@@ -28,13 +28,18 @@ const UploadGuide: React.FC = () => {
           </Heading>
           <UnorderedList>
             <ListItem>
+              <Link href="/tos" isExternal color="potato" fontWeight={700}>
+                {useLocaleValue({ ja: '利用規約', en: ' ToS' })}
+              </Link>
+            </ListItem>
+            <ListItem>
               <Link
                 href="https://potato.purplepalette.net/help/publish-fumen-rules"
                 isExternal
                 color="potato"
                 fontWeight={700}
               >
-                {useLocaleValue({ ja: '投稿ガイドライン', en: 'Required Things' })}
+                {useLocaleValue({ ja: '投稿ガイドライン', en: ' Upload Guideline' })}
               </Link>
             </ListItem>
           </UnorderedList>

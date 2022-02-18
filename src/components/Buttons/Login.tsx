@@ -37,7 +37,7 @@ const Login: React.FC = () => {
 
   return (
     <Button leftIcon={<FiLogIn />} bgColor="potato" color="white" onClick={popupLogin} width="full">
-      {useLocaleValue({ ja: 'ログイン', en: 'Login' })}
+      {useLocaleValue({ ja: 'ログイン', en: 'Login', zh: 'Login' })}
     </Button>
   );
 };

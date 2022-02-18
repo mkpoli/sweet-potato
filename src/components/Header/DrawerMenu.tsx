@@ -117,10 +117,13 @@ const DrawerMenu: React.FC = () => {
                       title="Language"
                       type="radio"
                       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                      onChange={(value: any) => router.push('/', '/', { locale: value })}
+                      onChange={(value: any) =>
+                        router.push(router.pathname, router.pathname, { locale: value })
+                      }
                     >
                       <MenuItemOption value="ja">日本語</MenuItemOption>
                       <MenuItemOption value="en">English</MenuItemOption>
+                      <MenuItemOption value="zh">中国語(簡体)</MenuItemOption>
                     </MenuOptionGroup>
                   </MenuList>
                 </Menu>

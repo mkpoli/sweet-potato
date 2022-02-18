@@ -29,7 +29,7 @@ const UploadGuide: React.FC = () => {
           <UnorderedList>
             <ListItem>
               <Link href="/tos" isExternal color="potato" fontWeight={700}>
-                {useLocaleValue({ ja: '利用規約', en: ' ToS' })}
+                {useLocaleValue({ ja: '利用規約', en: ' ToS', zh: 'Tos' })}
               </Link>
             </ListItem>
             <ListItem>
@@ -39,7 +39,11 @@ const UploadGuide: React.FC = () => {
                 color="potato"
                 fontWeight={700}
               >
-                {useLocaleValue({ ja: '投稿ガイドライン', en: ' Upload Guideline' })}
+                {useLocaleValue({
+                  ja: '投稿ガイドライン',
+                  en: 'Upload Guideline',
+                  zh: 'Upload Guideline',
+                })}
               </Link>
             </ListItem>
           </UnorderedList>
@@ -54,19 +58,23 @@ const UploadGuide: React.FC = () => {
             <ListItem>
               <WikiLink
                 path="/create-charts/required-things"
-                text={useLocaleValue({ ja: '必要なもの', en: 'Required Things' })}
+                text={useLocaleValue({
+                  ja: '必要なもの',
+                  en: 'Required Things',
+                  zh: 'Required Things',
+                })}
               />
             </ListItem>
             <ListItem>
               <WikiLink
                 path="/create-charts/copyrights"
-                text={useLocaleValue({ ja: '著作権', en: 'Copyrights' })}
+                text={useLocaleValue({ ja: '著作権', en: 'Copyrights', zh: 'Copyrights' })}
               />
             </ListItem>
             <ListItem>
               <WikiLink
                 path="/create-charts/editor"
-                text={useLocaleValue({ ja: '制作ツール', en: 'Chart Editor' })}
+                text={useLocaleValue({ ja: '制作ツール', en: 'Chart Editor', zh: 'Chart Editor' })}
               />
             </ListItem>
           </UnorderedList>

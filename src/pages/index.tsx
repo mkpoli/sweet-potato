@@ -77,7 +77,7 @@ const Home: React.FC = () => {
           <Box>
             <Link href="/levels/new">
               <Flex mt={[6, 6, 6, 6, 8]} align="center" justify="center" color="potato" gap={2}>
-                <Heading fontSize="1.2em">もっと見る</Heading>
+                <Heading fontSize="1.2em">{t.TOP_PAGE.LOAD_MORE}</Heading>
                 <Box fontSize="1.2em">
                   <FiArrowRight />
                 </Box>

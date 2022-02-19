@@ -4,6 +4,7 @@ import { chromium } from 'playwright';
 import { client } from 'framework/potato/client';
 import { Level } from 'framework/potato/api/@types';
 import OGPImage from 'components/Card/OGPImage';
+import crypto from 'crypto';
 
 export default async function ogp(req: Req, res: Res) {
   const id = (req.query.id || '').toString();
@@ -26,15 +27,34 @@ export default async function ogp(req: Req, res: Res) {
     return res.status(404).send('Not Found');
   }
 
+  // etag
+  const uid = crypto
+    .createHash('md5')
+    .update(level.name + level.updatedTime)
+    .digest('hex');
+  const etag = (req.headers['if-none-match'] || '').toString();
+
+  // 304 if cache exists
+  if (etag === uid) {
+    return res.status(304).end();
+  }
+
   try {
     // ogp image size
     const viewport = { width: 1200, height: 630 };
 
-    // launch browser
-    const browser = await chromium.launch({
-      headless: true,
+    if (process.env.playwright_path === undefined) {
+      const browserServer = await chromium.launchServer();
+      const wsEndpoint = browserServer.wsEndpoint();
+
+      process.env.playwright_path = wsEndpoint;
+    }
+
+    const browser = await chromium.connect({
+      wsEndpoint: process.env.playwright_path,
       timeout: 2000,
     });
+
     const page = await browser.newPage({ viewport });
 
     // generate page
@@ -50,14 +70,15 @@ export default async function ogp(req: Req, res: Res) {
     </head>
     <body>${markup}</body>
   </html>`,
-      { waitUntil: 'networkidle', timeout: 1000 },
+      { waitUntil: 'load', timeout: 3000 },
     );
 
     // take screenshot
-    const buf = await page.screenshot({ type: 'png', timeout: 1000 });
+    const buf = await page.screenshot({ type: 'png', timeout: 3000 });
     await browser.close();
 
-    res.setHeader('Cache-Control', 's-maxage=31536000, stale-while-revalidate');
+    res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=86400, must-revalidate');
+    res.setHeader('ETag', uid);
     res.setHeader('Content-Type', 'image/png');
     res.end(buf);
   } catch (error) {

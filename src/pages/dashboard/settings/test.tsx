@@ -22,7 +22,7 @@ import { useAuth } from 'hooks/auth';
 import { clientLegacy } from 'framework/potato/client';
 import Link from 'components/Link';
 import SEO from 'components/SEO';
-import SideMenu from 'components/DashBoard/SideMenu';
+import SideMenu from 'components/SideMenu/DashBoard';
 
 const Test: React.FC = () => {
   const [testURL, setTestURL] = useState<string>();

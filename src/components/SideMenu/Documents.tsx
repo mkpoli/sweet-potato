@@ -16,7 +16,7 @@ type Props = {
   index: number;
 };
 
-const SideMenu: React.FC<Props> = ({ index }) => {
+const Documents: React.FC<Props> = ({ index }) => {
   const { t } = useLocale();
 
   return (
@@ -32,30 +32,34 @@ const SideMenu: React.FC<Props> = ({ index }) => {
           <AccordionItem>
             <AccordionButton>
               <Box flex="1" textAlign="left">
-                {t.DASHBOARD.CONTENTS.MENU_TITLE}
+                {t.DOCUMENTS.GUIDE.TITLE}
               </Box>
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel px={8}>
-              <Link href="/dashboard/contents/levels">
+              <Link href="/guideline/player">
                 <Box>
-                  <Text>{t.DASHBOARD.CONTENTS.LEVELS.PAGE_TITLE}</Text>
+                  <Text>{t.DOCUMENTS.GUIDE.PLAYER.TITLE}</Text>
                 </Box>
               </Link>
             </AccordionPanel>
           </AccordionItem>
-
           <AccordionItem>
             <AccordionButton>
               <Box flex="1" textAlign="left">
-                {t.DASHBOARD.SETTINGS.MENU_TITLE}
+                {t.DOCUMENTS.TAP.TITLE}
               </Box>
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel px={8}>
-              <Link href="/dashboard/settings/test">
-                <Box>
-                  <Text>{t.DASHBOARD.SETTINGS.TEST.PAGE_TITLE}</Text>
+              <Link href="/tos">
+                <Box mb={4}>
+                  <Text>{t.DOCUMENTS.TAP.TOS}</Text>
+                </Box>
+              </Link>
+              <Link href="" style={{ opacity: 0.6, pointerEvents: 'none' }}>
+                <Box mt={4}>
+                  <Text>{t.DOCUMENTS.TAP.POLICY.PRIVACY}</Text>
                 </Box>
               </Link>
             </AccordionPanel>
@@ -66,4 +70,4 @@ const SideMenu: React.FC<Props> = ({ index }) => {
   );
 };
 
-export default SideMenu;
+export default Documents;

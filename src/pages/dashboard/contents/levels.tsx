@@ -18,7 +18,7 @@ import { useAuth } from 'hooks/auth';
 import { clientLegacy } from 'framework/potato/client';
 import { Level } from 'framework/potato/legacy/@types';
 import SEO from 'components/SEO';
-import SideMenu from 'components/DashBoard/SideMenu';
+import SideMenu from 'components/SideMenu/DashBoard';
 
 const MyPage: React.FC = () => {
   const [levels, setLevels] = useState<Level[]>([]);

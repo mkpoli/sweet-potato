@@ -19,7 +19,7 @@ const SEOTags: React.FC<SEO> = ({
   allowIndex,
 }): JSX.Element => {
   title = title + '｜Sweet Potato';
-  const domain = process.env.FRONT_URL;
+  const domain = process.env.NEXT_PUBLIC_FRONT_URL;
   const url = domain + path;
 
   return (

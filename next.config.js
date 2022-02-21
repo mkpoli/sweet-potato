@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   i18n: {
-    locales: ['en', 'ja', 'zh'],
+    locales: ['en', 'ja', 'zh', 'kr'],
     defaultLocale: 'ja',
   },
   env: {

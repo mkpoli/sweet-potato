@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import en from 'locales/en';
 import ja from 'locales/ja';
 import zh from 'locales/zh';
+import kr from 'locales/kr';
 
 export const useLocale = () => {
   const { locale } = useRouter();
@@ -14,6 +15,9 @@ export const useLocale = () => {
     case 'zh':
       t = zh;
       break;
+    case 'kr':
+      t = kr;
+      break;
     default:
       t = ja;
   }
@@ -21,7 +25,17 @@ export const useLocale = () => {
   return { t, locale };
 };
 
-export const useLocaleValue = ({ ja, en, zh }: { ja: string; en: string; zh: string }) => {
+export const useLocaleValue = ({
+  ja,
+  en,
+  zh,
+  kr,
+}: {
+  ja: string;
+  en: string;
+  zh: string;
+  kr: string;
+}) => {
   const { locale } = useRouter();
 
   let t;
@@ -31,6 +45,9 @@ export const useLocaleValue = ({ ja, en, zh }: { ja: string; en: string; zh: str
       break;
     case 'zh':
       t = zh;
+      break;
+    case 'kr':
+      t = kr;
       break;
     default:
       t = ja;

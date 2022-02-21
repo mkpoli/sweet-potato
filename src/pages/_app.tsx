@@ -20,6 +20,8 @@ const App = ({ Component, pageProps }: AppProps) => {
 
         <link rel="alternate" hrefLang="ja" href="https://potato.purplepalette.net/" />
         <link rel="alternate" hrefLang="en" href="https://potato.purplepalette.net/en/" />
+        <link rel="alternate" hrefLang="zh" href="https://potato.purplepalette.net/zh/" />
+        <link rel="alternate" hrefLang="kr" href="https://potato.purplepalette.net/kr/" />
         <link rel="alternate" hrefLang="x-default" href="https://potato.purplepalette.net/en/" />
 
         <link

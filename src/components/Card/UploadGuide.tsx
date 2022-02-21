@@ -29,7 +29,7 @@ const UploadGuide: React.FC = () => {
           <UnorderedList>
             <ListItem>
               <Link href="/tos" isExternal color="potato" fontWeight={700}>
-                {useLocaleValue({ ja: '利用規約', en: ' ToS', zh: 'Tos' })}
+                {t.DOCUMENTS.TAP.TOS}
               </Link>
             </ListItem>
             <ListItem>
@@ -43,6 +43,7 @@ const UploadGuide: React.FC = () => {
                   ja: '投稿ガイドライン',
                   en: 'Upload Guideline',
                   zh: 'Upload Guideline',
+                  kr: 'Upload Guideline',
                 })}
               </Link>
             </ListItem>
@@ -62,19 +63,30 @@ const UploadGuide: React.FC = () => {
                   ja: '必要なもの',
                   en: 'Required Things',
                   zh: 'Required Things',
+                  kr: 'Required Things',
                 })}
               />
             </ListItem>
             <ListItem>
               <WikiLink
                 path="/create-charts/copyrights"
-                text={useLocaleValue({ ja: '著作権', en: 'Copyrights', zh: 'Copyrights' })}
+                text={useLocaleValue({
+                  ja: '著作権',
+                  en: 'Copyrights',
+                  zh: 'Copyrights',
+                  kr: 'Copyrights',
+                })}
               />
             </ListItem>
             <ListItem>
               <WikiLink
                 path="/create-charts/editor"
-                text={useLocaleValue({ ja: '制作ツール', en: 'Chart Editor', zh: 'Chart Editor' })}
+                text={useLocaleValue({
+                  ja: '制作ツール',
+                  en: 'Chart Editor',
+                  zh: 'Chart Editor',
+                  kr: 'Chart Editor',
+                })}
               />
             </ListItem>
           </UnorderedList>

@@ -30,7 +30,7 @@ const Logout: React.FC = () => {
   return (
     <Flex justify="right" width="full">
       <Button leftIcon={<FiLogOut />} onClick={revokeToken} fontWeight={400} fontSize="0.8em">
-        {useLocaleValue({ ja: 'ログアウト', en: 'Log out', zh: 'Log out' })}
+        {useLocaleValue({ ja: 'ログアウト', en: 'Log out', zh: '登出', kr: '로그아웃' })}
       </Button>
     </Flex>
   );

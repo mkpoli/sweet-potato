@@ -124,7 +124,8 @@ const DrawerMenu: React.FC = () => {
                     >
                       <MenuItemOption value="ja">日本語</MenuItemOption>
                       <MenuItemOption value="en">English</MenuItemOption>
-                      <MenuItemOption value="zh">中国語(簡体)</MenuItemOption>
+                      <MenuItemOption value="zh">中国語</MenuItemOption>
+                      <MenuItemOption value="kr">한국어</MenuItemOption>
                     </MenuOptionGroup>
                   </MenuList>
                 </Menu>

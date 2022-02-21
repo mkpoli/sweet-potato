@@ -6,7 +6,7 @@ import Logout from 'components/Buttons/Logout';
 const UserIcon: React.FC = () => {
   const { profile } = useAuth();
   return (
-    <Box p={4} borderRadius="base" shadow="card">
+    <Box p={4} borderRadius="base" border="2px" borderColor="componentBg.light">
       <Flex mr={8} width="full" alignItems="center">
         <Box mx={2}>
           <Image

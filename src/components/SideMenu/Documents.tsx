@@ -14,21 +14,22 @@ import { useLocale } from 'hooks/locales';
 
 type Props = {
   index: number;
+  pm?: number;
 };
 
-const Documents: React.FC<Props> = ({ index }) => {
+const Documents: React.FC<Props> = ({ pm, index }) => {
   const { t } = useLocale();
 
   return (
     <Flex
       h="full"
       justify="center"
-      borderRight="1px"
-      borderBottom="1px"
+      borderRight={pm === undefined ? '1px' : pm}
+      borderBottom={pm === undefined ? '1px' : pm}
       borderColor="componentBg.light"
     >
-      <Box mt="100px" w="full">
-        <Accordion px={4} w="full" defaultIndex={index}>
+      <Box mt={pm === undefined ? '100px' : pm} w="full">
+        <Accordion px={pm === undefined ? '4' : pm} w="full" defaultIndex={index}>
           <AccordionItem>
             <AccordionButton>
               <Box flex="1" textAlign="left">

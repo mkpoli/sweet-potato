@@ -5,7 +5,6 @@ import {
   useColorModeValue,
   Flex,
   Box,
-  Stack,
   Drawer,
   DrawerOverlay,
   DrawerContent,
@@ -23,7 +22,8 @@ import {
   Icon,
   Spinner,
 } from '@chakra-ui/react';
-import { FiMenu, FiUploadCloud, FiUser } from 'react-icons/fi';
+import { FiMenu, FiUploadCloud } from 'react-icons/fi';
+import { FaUser } from 'react-icons/fa';
 import { MdLanguage } from 'react-icons/md';
 import { useAuth } from 'hooks/auth';
 import Logo from 'components/Header/Logo';
@@ -31,6 +31,7 @@ import UserIcon from 'components/Header/UserIcon';
 import Login from 'components/Buttons/Login';
 import Link from 'components/Link';
 import { useLocale } from 'hooks/locales';
+import Documents from 'components/SideMenu/Documents';
 
 const DrawerMenu: React.FC = () => {
   const { status } = useAuth();
@@ -89,7 +90,7 @@ const DrawerMenu: React.FC = () => {
                             </Button>
                           </Link>
                           <Link href="/dashboard/contents/levels">
-                            <Button leftIcon={<FiUser />} border="1px" width="full">
+                            <Button leftIcon={<FaUser />} color="white" bgColor="pink" width="full">
                               {t.HEADER.MYPAGE}
                             </Button>
                           </Link>
@@ -102,7 +103,7 @@ const DrawerMenu: React.FC = () => {
                 )}
               </Box>
               <Box>
-                <Stack spacing={[2, 4]} fontSize={['1em', '1.05em', '1.1em', '1.2em']}></Stack>
+                <Documents index={0} pm={0} />
               </Box>
             </DrawerBody>
             <DrawerFooter>

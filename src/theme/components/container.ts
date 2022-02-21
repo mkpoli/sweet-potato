@@ -7,6 +7,9 @@ const baseStyle = {
 const variants = {
   default: {},
   dashboard: { minH: '100vh', maxW: 'full', pt: { base: 8, xl: '100px' } },
+  cover: {
+    p: { base: 8, xl: 0 },
+  },
 };
 
 const defaultProps = {

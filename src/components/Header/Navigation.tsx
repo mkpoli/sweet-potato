@@ -9,7 +9,7 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 import { useAuth } from 'hooks/auth';
-import { FiUser } from 'react-icons/fi';
+import { FaUser } from 'react-icons/fa';
 import { useLocale } from 'hooks/locales';
 
 import Logo from 'components/Header/Logo';
@@ -33,6 +33,7 @@ const HeaderNav: React.FC = () => {
       px={[4, 4, 8, 8, 16]}
       py={5}
       w="full"
+      h="85px"
       align="center"
       bgColor={useColorModeValue('bodyBg.light', 'bodyBg.dark')}
       userSelect="none"
@@ -55,7 +56,7 @@ const HeaderNav: React.FC = () => {
             {status.isAuthed ? (
               <Box mx={[0, 2, 4]} fontSize="1em" w="8em">
                 <Link href="/dashboard/contents/levels">
-                  <Button leftIcon={<FiUser />} border="1px" width="full">
+                  <Button leftIcon={<FaUser />} color="white" bgColor="pink" width="full">
                     {t.HEADER.MYPAGE}
                   </Button>
                 </Link>

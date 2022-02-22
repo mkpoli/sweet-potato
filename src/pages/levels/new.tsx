@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocale } from 'hooks/locales';
-import { Container, SimpleGrid, Skeleton, Heading, Box } from '@chakra-ui/react';
+import { Container, SimpleGrid, Heading, Box } from '@chakra-ui/react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { client } from 'framework/potato/client';
 import { Level } from 'models/Level';
 import SEO from 'components/SEO';
 import Score from 'components/Card/Score';
+import PagesMenu from 'components/Header/PagesMenu';
 
 const New: React.FC = () => {
   const { t } = useLocale();
@@ -37,7 +38,8 @@ const New: React.FC = () => {
         thumbnail=""
         allowIndex={true}
       />
-      <Container>
+      <PagesMenu />
+      <Container variant="withMenu">
         <Heading mt={[4, 4, 4, 4, 6]} mb={[6, 6, 6, 6, 8]} fontSize="1.4em" textAlign="center">
           {t.TOP_PAGE.NEW_SCORE_LIST}
         </Heading>
@@ -45,23 +47,9 @@ const New: React.FC = () => {
         <Box mb={16}>
           <InfiniteScroll pageStart={-1} loadMore={fetchLevels} hasMore={hasMore}>
             <SimpleGrid columns={[1, 2, 2, 3, 4, 5, 6]} spacing={[4, 4, 4, 4, 6, 6, 8]}>
-              {levels.length === 0 ? (
-                <>
-                  {(() => {
-                    const rep = [];
-                    for (let i = 0; i < 8; i++) {
-                      rep.push(<Skeleton key={i} height="300px" borderRadius="base" />);
-                    }
-                    return <>{rep}</>;
-                  })()}
-                </>
-              ) : (
-                <>
-                  {levels.map((level: Level) => (
-                    <Score key={level.createdTime} {...level} />
-                  ))}
-                </>
-              )}
+              {levels.map((level: Level) => (
+                <Score key={level.createdTime} {...level} />
+              ))}
             </SimpleGrid>
           </InfiniteScroll>
         </Box>

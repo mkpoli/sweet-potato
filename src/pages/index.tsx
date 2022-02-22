@@ -5,6 +5,7 @@ import { FiExternalLink, FiArrowRight } from 'react-icons/fi';
 import { client } from 'framework/potato/client';
 import { Level } from 'framework/potato/api/@types';
 import SEO from 'components/SEO';
+import PagesMenu from 'components/Header/PagesMenu';
 import Score from 'components/Card/Score';
 import Link from 'components/Link';
 
@@ -32,7 +33,8 @@ const Home: React.FC = () => {
         thumbnail=""
         allowIndex={true}
       />
-      <Container>
+      <PagesMenu />
+      <Container variant="withMenu">
         <Box mb={24} textAlign="center">
           <Heading mt={8} fontSize={['2em', '2.4em', '2.4em', '2.4em', '2.8em', '3.2em']}>
             Fan-made

@@ -42,9 +42,13 @@ const HeaderNav: React.FC = () => {
       borderBottom="1px"
       borderColor={useColorModeValue('componentBg.light', 'componentBg.dark')}
     >
-      <Link href="/">
-        <Logo />
-      </Link>
+      <Flex align="center">
+        <Box>
+          <Link href="/">
+            <Logo />
+          </Link>
+        </Box>
+      </Flex>
       <Spacer />
       <Flex align="center" style={{ visibility: visible ? 'visible' : 'hidden' }}>
         {!status.isLoaded ? (

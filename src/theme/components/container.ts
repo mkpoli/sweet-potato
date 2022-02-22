@@ -10,6 +10,9 @@ const variants = {
   cover: {
     p: { base: 8, xl: 0 },
   },
+  withMenu: {
+    pt: '140px',
+  },
 };
 
 const defaultProps = {

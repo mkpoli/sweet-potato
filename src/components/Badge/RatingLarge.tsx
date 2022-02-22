@@ -10,9 +10,9 @@ const RatingLarge: React.FC<Props> = ({ rate }) => {
 
   if (rate > 30) {
     color = '#9c27b0';
-  } else if (rate > 25) {
+  } else if (rate > 21) {
     color = '#f44336';
-  } else if (rate > 15) {
+  } else if (rate > 12) {
     color = '#f8e03b';
   }
 

@@ -53,12 +53,9 @@ steps:
     id: Deploy
     entrypoint: gcloud
 
-timeout: 1800s
+timeout: 3600s
 
 substitutions:
   _GCR_HOSTNAME: asia.gcr.io
   _SERVICE_NAME: frontend
   _DEPLOY_REGION: asia-northeast1
-
-options:
-  machineType: 'E2_HIGHCPU_8'

@@ -4,61 +4,108 @@ import {
   GridItem,
   Flex,
   Box,
-  Spacer,
   Heading,
   AspectRatio,
   Image,
+  Text,
 } from '@chakra-ui/react';
 import theme from 'theme';
-import RatingLarge from 'components/Badge/RatingLarge';
+import { FaHeart, FaClipboardList } from 'react-icons/fa';
+import { RiSwordFill } from 'react-icons/ri';
 import { Level } from 'framework/potato/api/@types';
 
-const OGPImage = ({ title, author, cover, rating }: Level) => (
-  <>
-    <ChakraProvider theme={theme}>
-      <Box p={12} w="full" h="full" bgGradient="linear(to-r, potato, pink)">
-        <Box p={8} w="full" h="full" bgColor="white" borderRadius="1em">
-          <Box w="full" h="full">
-            <Grid templateColumns="repeat(3, 1fr)" gap={8}>
-              <GridItem colSpan={1}>
-                <AspectRatio ratio={1}>
-                  <Image
-                    src={`${process.env.API_URL_LEGACY}${cover.url}`}
-                    alt=""
-                    objectFit="cover"
-                    borderRadius="1em"
-                  />
-                </AspectRatio>
-              </GridItem>
-              <GridItem px={2} colSpan={2}>
-                <Heading fontSize="2.8em" fontWeight={700}>
-                  {title}
-                </Heading>
-                <Box my={4}>
-                  <RatingLarge rate={rating} />
-                </Box>
-              </GridItem>
-            </Grid>
-            <Flex mt={20} align="center">
-              <Flex gap={4} align="center">
-                <Box w="5em" h="5em" bgColor="componentBg.light" borderRadius="circle" />
-                <Heading fontSize="2em">{author}</Heading>
-              </Flex>
-              <Spacer />
-              <Box>
-                <Image
-                  w="16em"
-                  src={`${process.env.NEXT_PUBLIC_FRONT_URL}/logo.png`}
-                  alt=""
-                  objectFit="cover"
-                />
+const OGPImage = ({ title, author, cover, rating }: Level) => {
+  let color = '#6bcaf9';
+
+  if (rating > 30) {
+    color = '#9c27b0';
+  } else if (rating > 21) {
+    color = '#f44336';
+  } else if (rating > 12) {
+    color = '#f8e03b';
+  }
+
+  return (
+    <>
+      <ChakraProvider theme={theme}>
+        <Box position="relative" w="full" h="full">
+          <Box p={12} w="full" h="full">
+            <Box pb="25px" w="full" h="full" bgColor="white" borderRadius="1em">
+              <Box w="full" h="full">
+                <Grid h="full" templateColumns="repeat(3, 1fr)" gap={8}>
+                  <GridItem position="relative" colSpan={2}>
+                    <Box>
+                      <Box mb={8}>
+                        <Heading fontSize="3.6em" fontWeight={700} noOfLines={2}>
+                          {title}
+                        </Heading>
+                      </Box>
+                      <Flex mt={8} align="center" gap={4}>
+                        <Box bgColor="componentBg.light" boxSize="4em" borderRadius="circle" />
+                        <Box>
+                          <Heading fontSize="2em" fontWeight={700} noOfLines={1}>
+                            {author}
+                          </Heading>
+                        </Box>
+                      </Flex>
+                    </Box>
+                    <Flex position="absolute" align="center" fontSize="3.2em" bottom={4} gap={24}>
+                      <Flex align="start" gap={4} lineHeight={1}>
+                        <Box color="pink">
+                          <RiSwordFill />
+                        </Box>
+                        <Box fontSize="0.8em">
+                          <Heading>{rating}</Heading>
+                          <Text my={1} fontSize="0.7em">
+                            Rating
+                          </Text>
+                        </Box>
+                      </Flex>
+                      <Flex align="start" gap={4} lineHeight={1}>
+                        <Box color="pink">
+                          <FaHeart />
+                        </Box>
+                        <Box fontSize="0.8em">
+                          <Heading>0</Heading>
+                          <Text my={1} fontSize="0.7em">
+                            Likes
+                          </Text>
+                        </Box>
+                      </Flex>
+                      <Flex align="start" gap={4} lineHeight={1}>
+                        <Box color="pink">
+                          <FaClipboardList />
+                        </Box>
+                        <Box fontSize="0.8em">
+                          <Heading>0</Heading>
+                          <Text my={1} fontSize="0.7em">
+                            Listed
+                          </Text>
+                        </Box>
+                      </Flex>
+                    </Flex>
+                  </GridItem>
+                  <GridItem colSpan={1}>
+                    <Box w="100%">
+                      <AspectRatio ratio={1}>
+                        <Image
+                          src={`${process.env.API_URL_LEGACY}${cover.url}`}
+                          alt=""
+                          objectFit="cover"
+                          borderRadius="1em"
+                        />
+                      </AspectRatio>
+                    </Box>
+                  </GridItem>
+                </Grid>
               </Box>
-            </Flex>
+            </Box>
           </Box>
+          <Box position="absolute" bottom={0} w="full" h="25px" bgColor={color} />
         </Box>
-      </Box>
-    </ChakraProvider>
-  </>
-);
+      </ChakraProvider>
+    </>
+  );
+};
 
 export default OGPImage;
